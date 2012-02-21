@@ -2,7 +2,7 @@ class Member < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name
@@ -11,6 +11,6 @@ class Member < ActiveRecord::Base
   has_many :goals, :through => :endeavors
   
   def score_for goal
-    endeavors.where(:goal => goal).scores.sum(:mark)
+    endeavors.joins(:goals).where(:goal => goal).joins(:scores).sum(:mark)
   end
 end
