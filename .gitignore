@@ -1,4 +1,5 @@
 config/email.yml
+config/database.yml
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 #

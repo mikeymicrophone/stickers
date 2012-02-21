@@ -1,6 +1,0 @@
-development:
-  adapter: sqlite3
-  database: db/stickers_development.sqlite3
-  # username: root
-  # host: localhost
-  # encoding: utf8
