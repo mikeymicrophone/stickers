@@ -1,0 +1,1 @@
+Stickers::Application.config.action_mailer.smtp_settings[:password] = YAML::load(File.open(File.join(Rails.root, 'config/email.yml')))['stickerbot']['password'] if Rails.env.production?
