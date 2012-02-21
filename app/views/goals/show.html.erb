@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-  <%= @goal.title %>
+  <b><%= @goal.title %></b>
 </p>
 
 <p>
-  <b>Description:</b>
   <%= @goal.description %>
 </p>
+
+<% @goal.members.each do |member| %>
+  <%= member.score_for(@goal) %>
+<% end %>
 
 
 <%= link_to 'Edit', edit_goal_path(@goal) %> |

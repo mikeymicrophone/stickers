@@ -9,4 +9,8 @@ class Member < ActiveRecord::Base
   
   has_many :endeavors
   has_many :goals, :through => :endeavors
+  
+  def score_for goal
+    endeavors.where(:goal => goal).scores.sum(:mark)
+  end
 end
