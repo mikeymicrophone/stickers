@@ -1,0 +1,6 @@
+<div>
+  <% @days.each do |day| %>
+    <%= link_to day.date, day %>
+  <% end %>
+</div>
+<%= link_to 'New Day', new_day_path %>

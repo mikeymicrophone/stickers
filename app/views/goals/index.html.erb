@@ -1,0 +1,15 @@
+<h1>Stickers Club Goals</h1>
+
+<table>
+  <% @goals.each do |goal| %>
+    <tr>
+      <td><%= link_to goal.title, goal %></td>
+      <td><%= goal.description %></td>
+      <td><%= pluralize goal.endeavors.count, 'member' %> endeavoring upon this goal!</td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Goal', new_goal_path %>

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Goal:</b>
+  <%= link_to @endeavor.goal.title, @endeavor.goal %>
+</p>
+
+<p>
+  <b>Member:</b>
+  <%= link_to @endeavor.member.first_name, @endeavor.member %>
+</p>
+
+
+<%= link_to 'Edit', edit_endeavor_path(@endeavor) %> |
+<%= link_to 'Back', endeavors_path %>

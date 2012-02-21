@@ -1,0 +1,14 @@
+<h1>Endeavors</h1>
+
+<table>
+<% @endeavors.each do |endeavor| %>
+  <tr>
+    <td><%= link_to endeavor.goal.title, endeavor.goal %></td>
+    <td><%= endeavor.member.first_name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Endeavor', new_endeavor_path %>

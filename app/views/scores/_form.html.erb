@@ -1,0 +1,30 @@
+<%= form_for(@score) do |f| %>
+  <% if @score.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@score.errors.count, "error") %> prohibited this score from being saved:</h2>
+
+      <ul>
+      <% @score.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :mark, 'Score' %>
+    <%= f.text_field :mark %>
+  </div>
+
+  <div class="field">
+    <%= f.label :endeavor %><br />
+    <%= f.select :endeavor_id, options_from_collection_for_select(Endeavor.all, :id, :goal_name, @score.endeavor.id) %>
+  </div>
+  <div class="field">
+    <%= f.label :day %><br />
+    <%= f.select :day_id, options_from_collection_for_select(Day.all, :id, :date) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

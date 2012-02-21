@@ -1,5 +1,17 @@
 Stickers::Application.routes.draw do
+  resources :scores
+
+  resources :days
+
+  resources :endeavors
+
+  resources :goals
+
   devise_for :members
+  
+  resources :members
+  
+  root :to => 'goals#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Score</b>
+  <%= @score.mark %>
+</p>
+
+<p>
+  <b>Endeavor:</b>
+  <%= @score.endeavor.goal_name %>
+</p>
+
+<p>
+  <b>Day:</b>
+  <%= @score.day.date %>
+</p>
+
+
+<%= link_to 'Edit', edit_score_path(@score) %> |
+<%= link_to 'Back', scores_path %>

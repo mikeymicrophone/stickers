@@ -1,0 +1,17 @@
+<div>
+  <%= @member.first_name %> has the following goals:
+</div>
+<% @member.endeavors.each do |endeavor| %>
+  <%= link_to endeavor.goal.title, endeavor.goal %>
+  <%= link_to 'update progress', new_score_path(:score => {:endeavor_id => endeavor.id}) %><br>
+  Recent scores:
+  <% endeavor.scores.each do |score| %>
+    <%= div_for score do %>
+      <%= score.mark %> on <%= score.day.date %>
+    <% end %>
+  <% end %>
+  Total score:
+  <%= div_for endeavor, :class => medal_for(endeavor.scores.sum(:mark)) do %>
+    <%= endeavor.scores.sum(:mark) %>
+  <% end %>
+<% end %>

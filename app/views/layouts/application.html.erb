@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <nav>
+    <%= link_to 'goals', goals_path %>
+    <%= link_to 'members', members_path %>
+    <%= link_to 'set a goal', new_endeavor_path %>
+  </nav>
+  <nav>
+    <% if current_member %>
+      <%= link_to 'log out', destroy_member_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to 'sign up', new_member_registration_path %>
+      <%= link_to 'sign in', new_member_session_path %>
+    <% end %>
+  </nav>
+  <%= yield %>
 
 </body>
 </html>
