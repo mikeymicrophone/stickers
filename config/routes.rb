@@ -1,5 +1,13 @@
 Stickers::Application.routes.draw do
-  resources :scores
+  resources :details do
+    member do
+      get :download_payload_for
+    end
+  end
+
+  resources :scores do
+    resources :details
+  end
 
   resources :days
 
@@ -9,7 +17,10 @@ Stickers::Application.routes.draw do
 
   devise_for :members
   
-  resources :members, :only => [:index, :show]
+  resources :members, :only => [:index, :show] do
+    resources :goals
+    resources :scores
+  end
   
   root :to => 'goals#index'
 

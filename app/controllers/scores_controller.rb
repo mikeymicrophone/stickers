@@ -2,7 +2,11 @@ class ScoresController < ApplicationController
   # GET /scores
   # GET /scores.json
   def index
-    @scores = Score.all
+    if params[:member_id]
+      @scores = Member.find(params[:member_id]).scores
+    else
+      @scores = Score.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -9,12 +9,13 @@ class Member < ActiveRecord::Base
   
   has_many :endeavors
   has_many :goals, :through => :endeavors
+  has_many :scores, :through => :endeavors
   
   def score_for goal
-    goal.endeavors.joins(:scores).sum(:mark)
+    goal.endeavors.where(:member_id => id).joins(:scores).sum(:mark)
   end
   
   def scored_days_for goal
-    goal.endeavors.joins(:scores).count
+    goal.endeavors.where(:member_id => id).joins(:scores).count
   end
 end

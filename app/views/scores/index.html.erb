@@ -3,14 +3,36 @@
 <table>
 <% @scores.each do |score| %>
   <tr>
-    <td><%= score.endeavor.member.first_name %><td>
+    <td><%= link_to score.member.first_name, member_scores_path(score.member) %><td>
     <td>got</td>
-    <td><%= score.mark %></td>
+    <td>
+      <% if score.details.present? %>
+        <%= link_to score.mark, score_details_path(score), :remote => true %>
+      <% else %>
+        <%= score.mark %>
+      <% end %>
+    </td>
     <td>for</td>
     <td><%= score.endeavor.goal.title %></td>
     <td>on</td>
     <td><%= score.date %></td>
     <td><%= link_to 'enter new score', new_score_path(:score => {:endeavor_id => score.endeavor_id})%></td>
+    <td><%= link_to_function 'add detail', "$('##{dom_id(score, :detail_on)}').show()" %></td>
+  </tr>
+  <tr>
+    <td colspan=9>
+      <%= div_for score, :details do %>
+      
+      <% end %>
+      
+      <%= form_for score.details.new, :html => {:id => dom_id(score, :detail_on), :style => "display:none"} do |f| %>
+        <%= f.text_area :note, :size => '40x5' %>
+        <%= f.file_field :payload %>
+        <%= f.submit :save %>
+        <%= f.hidden_field :target_type %>
+        <%= f.hidden_field :target_id %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>

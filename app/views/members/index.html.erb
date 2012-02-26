@@ -1,3 +1,9 @@
-<% @members.each do |member| %>
-  <%= link_to member.first_name, member %>
-<% end %>
+<table>
+  <% @members.each do |member| %>
+    <tr>
+      <td><%= link_to member.first_name, member %></td>
+      <td><%= link_to pluralize(member.goals.count, 'goal'), member_goals_path(member) %></td>
+      
+    </tr>
+  <% end %>
+</table>

@@ -24,25 +24,21 @@
           <%= endeavor.scores.sum(:mark) %>
         <% end %>
       </td>
+      <td><%= endeavor.average %></td>
+      <td><%= endeavor.average_last_7_days %></td>
     </tr>
     <tr>
       <td></td>
       <td>
-        <%= form_for(endeavor.scores.new) do |f| %>
+        <%= link_to_function 'enter', "$('##{dom_id(endeavor, :score_for)}').show()"%>
+        <%= form_for(endeavor.scores.new, :html => {:style => "display:none", :id => dom_id(endeavor, :score_for)}) do |f| %>
           <div class="field">
-            <%= f.text_field :mark, :size => 4, :placeholder => 20 %>
-          </div>
-
-          <div class="field">
-            <%= f.label :date, 'Score' %>
+            <%= f.text_field :mark, :size => 2, :placeholder => 20 %>
             <%= f.date_select :date %>
+            <%= f.submit :ok %>
           </div>
 
           <%= f.hidden_field :endeavor_id %>
-
-          <div class="actions">
-            <%= f.submit %>
-          </div>
         <% end %>
       </td>
     </tr>

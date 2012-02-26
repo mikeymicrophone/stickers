@@ -2,7 +2,11 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    if params[:member_id]
+      @goals = Member.find(params[:member_id]).goals
+    else
+      @goals = Goal.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
