@@ -9,9 +9,13 @@
 </p>
 
 <% @goal.members.each do |member| %>
-  <%= member.score_for(@goal) %>
+  <%= member.first_name %> has
+  <%= member.score_for(@goal) %> in
+  <%= pluralize member.scored_days_for(@goal), 'day' %> for a average percentage of 
+  <%= (member.score_for(@goal) * 5.0 / member.scored_days_for(@goal)).to_i %>
 <% end %>
 
+<%= link_to 'try this goal', new_endeavor_path(:endeavor => {:goal_id => @goal.id}) %>
 
 <%= link_to 'Edit', edit_goal_path(@goal) %> |
 <%= link_to 'Back', goals_path %>

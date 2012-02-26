@@ -9,7 +9,7 @@ Stickers::Application.routes.draw do
 
   devise_for :members
   
-  # resources :members, :only => [:index, :show]
+  resources :members, :only => [:index, :show]
   
   root :to => 'goals#index'
 

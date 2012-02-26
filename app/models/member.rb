@@ -11,6 +11,10 @@ class Member < ActiveRecord::Base
   has_many :goals, :through => :endeavors
   
   def score_for goal
-    endeavors.joins(:goals).where(:goal => goal).joins(:scores).sum(:mark)
+    goal.endeavors.joins(:scores).sum(:mark)
+  end
+  
+  def scored_days_for goal
+    goal.endeavors.joins(:scores).count
   end
 end

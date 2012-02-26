@@ -15,14 +15,20 @@
     <%= f.label :mark, 'Score' %>
     <%= f.text_field :mark %>
   </div>
+  
+  <div class="field">
+    <%= f.label :date, 'Score' %>
+    <%= f.date_select :date %>
+  </div>
 
   <div class="field">
     <%= f.label :endeavor %><br />
     <%= f.select :endeavor_id, options_from_collection_for_select(Endeavor.all, :id, :goal_name, @score.endeavor.id) %>
   </div>
+  
   <div class="field">
-    <%= f.label :day %><br />
-    <%= f.select :day_id, options_from_collection_for_select(Day.all, :id, :date) %>
+    <%#= f.label :day %><br />
+    <%#= f.select :day_id, options_from_collection_for_select(Day.all, :id, :date) %>
   </div>
   <div class="actions">
     <%= f.submit %>

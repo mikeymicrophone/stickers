@@ -24,7 +24,7 @@ class EndeavorsController < ApplicationController
   # GET /endeavors/new
   # GET /endeavors/new.json
   def new
-    @endeavor = Endeavor.new
+    @endeavor = Endeavor.new params[:endeavor]
 
     respond_to do |format|
       format.html # new.html.erb

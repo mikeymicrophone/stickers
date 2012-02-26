@@ -1,17 +1,50 @@
 <div>
-  <%= @member.first_name %> has the following goals:
+  <h1><%= @member.first_name %></h1> has <%= @member.goals.count %> goals:
 </div>
-<% @member.endeavors.each do |endeavor| %>
-  <%= link_to endeavor.goal.title, endeavor.goal %>
-  <%= link_to 'update progress', new_score_path(:score => {:endeavor_id => endeavor.id}) %><br>
-  Recent scores:
-  <% endeavor.scores.each do |score| %>
-    <%= div_for score do %>
-      <%= score.mark %> on <%= score.day.date %>
-    <% end %>
+<table style="border: 1px solid black">
+  <tr>
+    <th></th>
+    <th>Recent scores</th>
+    <th>Total score</th>
+    <th>%</th>
+    <th>% last 7 days</th>
+  </tr>
+  <% @member.endeavors.each do |endeavor| %>
+    <tr>
+      <td><%= link_to endeavor.goal.title, endeavor.goal %></td>
+      <td>
+        <% endeavor.scores.each do |score| %>
+          <%= div_for score do %>
+            <%= score.mark %> on <%= score.date %>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <%= div_for endeavor, :class => medal_for(endeavor.scores.sum(:mark)) do %>
+          <%= endeavor.scores.sum(:mark) %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= form_for(endeavor.scores.new) do |f| %>
+          <div class="field">
+            <%= f.text_field :mark, :size => 4, :placeholder => 20 %>
+          </div>
+
+          <div class="field">
+            <%= f.label :date, 'Score' %>
+            <%= f.date_select :date %>
+          </div>
+
+          <%= f.hidden_field :endeavor_id %>
+
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
-  Total score:
-  <%= div_for endeavor, :class => medal_for(endeavor.scores.sum(:mark)) do %>
-    <%= endeavor.scores.sum(:mark) %>
-  <% end %>
-<% end %>
+</table>
