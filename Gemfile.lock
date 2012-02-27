@@ -59,8 +59,11 @@ GEM
       thor (~> 0.14)
     json (1.6.5)
     libv8 (3.3.10.4)
+<<<<<<< HEAD
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+=======
+>>>>>>> a6ae74b122a84f27a40c656592ff5ed9d3fe79cd
     mail (2.4.1)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
