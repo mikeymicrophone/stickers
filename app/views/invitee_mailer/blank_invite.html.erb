@@ -1,0 +1,31 @@
+<p>
+  Hi there.
+</p>
+<p>
+  <% if @inviter %>
+    <%= @inviter.first_name %>
+  <% else %>
+    A friend
+  <% end %>
+     invites you to join the Stickers Club - a club where you can set daily goals and track how well you do compared to your friends.  If you do well, you get stickers for each goal - bronze, silver, gold, super-gold, or super-duper-gold.
+</p>
+<% if @message %>
+<p>
+  Here's what they said.
+</p>
+  <p>
+    <%= @message %>
+  </p>
+<% end %>
+<p>
+  <%= link_to confirmation_invitee_path(@invitee, :token => @invitee.confirmation_token), confirmation_invitee_path(@invitee, :token => @invitee.confirmation_token) %>
+</p>
+<p>
+  You can get partial credit for each goal, anywhere from 0 to a perfect 20.  Your friends look at how well you did, and ask why, helping you <i>and</i> them clarify your intentions and try some cool things.
+</p>
+<p>
+  This app is here to help you meet your goals, and make them the right ones.  Ultimately it's all up to you, which is why it's so exciting.
+</p>
+<p>
+  -Sticker Bot
+</p>

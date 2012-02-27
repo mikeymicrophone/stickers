@@ -19,7 +19,7 @@
           <% end %>
         <% end %>
       </td>
-      <td>
+      <td class="total">
         <%= div_for endeavor, :class => medal_for(endeavor.scores.sum(:mark)) do %>
           <%= endeavor.scores.sum(:mark) %>
         <% end %>

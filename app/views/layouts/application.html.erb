@@ -10,15 +10,21 @@
   <nav>
     <%= link_to 'goals', goals_path %>
     <%= link_to 'members', members_path %>
+    <%= link_to 'endeavors', endeavors_path %>
     <%= link_to 'set a goal', new_endeavor_path %>
     <%= link_to 'scores', scores_path %>
   </nav>
-  <nav>
+  <nav id="registration_stuff">
     <% if current_member %>
       <%= link_to 'log out', destroy_member_session_path, :method => :delete %>
     <% else %>
       <%= link_to 'sign up', new_member_registration_path %>
       <%= link_to 'sign in', new_member_session_path %>
+    <% end %>
+    <%= form_for Invite.new, :remote => true do |f| %>
+      <%= f.text_field :emails, :placeholder => "joe@example.com, teebs@example.com" %>
+      <%= f.submit :invite %><br>
+      <%= f.text_area :message, :size => '40x3', :placeholder => 'Message' %>
     <% end %>
   </nav>
   <%= yield %>

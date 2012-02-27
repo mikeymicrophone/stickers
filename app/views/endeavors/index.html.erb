@@ -5,7 +5,24 @@
   <tr>
     <td><%= link_to endeavor.goal.title, endeavor.goal %></td>
     <td><%= endeavor.member.first_name %></td>
+    <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
   </tr>
+  <tr>
+    <td colspan=9>
+      <%= div_for endeavor, :details do %>
+      
+      <% end %>
+      
+      <%= form_for endeavor.details.new, :html => {:id => dom_id(endeavor, :detail_on), :style => "display:none"} do |f| %>
+        <%= f.text_area :note, :size => '40x5' %>
+        <%= f.file_field :payload %>
+        <%= f.submit :save %>
+        <%= f.hidden_field :target_type %>
+        <%= f.hidden_field :target_id %>
+      <% end %>
+    </td>
+  </tr>
+  
 <% end %>
 </table>
 

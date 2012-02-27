@@ -1,0 +1,27 @@
+<h1>Listing invitees</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Facebook</th>
+    <th>Invite</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @invitees.each do |invitee| %>
+  <tr>
+    <td><%= invitee.email %></td>
+    <td><%= invitee.facebook_id %></td>
+    <td><%= invitee.invite_id %></td>
+    <td><%= link_to 'Show', invitee %></td>
+    <td><%= link_to 'Edit', edit_invitee_path(invitee) %></td>
+    <td><%= link_to 'Destroy', invitee, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Invitee', new_invitee_path %>

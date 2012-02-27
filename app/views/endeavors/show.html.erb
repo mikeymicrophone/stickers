@@ -10,6 +10,13 @@
   <%= link_to @endeavor.member.first_name, @endeavor.member %>
 </p>
 
+<div>
+  <%= render @endeavor.details %>
+</div>
+
+<div>
+  <%= render @endeavor.scores %>...
+</div>
 
 <%= link_to 'Edit', edit_endeavor_path(@endeavor) %> |
 <%= link_to 'Back', endeavors_path %>

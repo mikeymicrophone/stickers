@@ -2,9 +2,14 @@ class Endeavor < ActiveRecord::Base
   belongs_to :goal
   belongs_to :member
   has_many :scores
+  has_many :details, :as => :target
   
   def goal_name
     goal.title
+  end
+  
+  def name
+    "#{member.first_name}/#{goal_name}"
   end
   
   def score days = nil

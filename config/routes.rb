@@ -1,4 +1,12 @@
 Stickers::Application.routes.draw do
+  resources :invitees do
+    member do
+      get :confirmation
+    end
+  end
+
+  resources :invites
+
   resources :details do
     member do
       get :download_payload_for
