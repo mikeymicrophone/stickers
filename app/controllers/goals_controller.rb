@@ -2,11 +2,11 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    if params[:member_id]
-      @goals = Member.find(params[:member_id]).goals
+    @goals = if params[:member_id]
+      Member.find(params[:member_id]).goals
     else
-      @goals = Goal.all
-    end
+      Goal.all
+    end.sort_by { rand }
 
     respond_to do |format|
       format.html # index.html.erb

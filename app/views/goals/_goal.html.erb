@@ -1,4 +1,13 @@
 <tr id="<%= dom_id goal %>">
+  <td>
+    <% endeavor = current_member && current_member.endeavors.where(:goal_id => goal).first%>
+    <%= form_for Score.new, :html => {:id => dom_id(endeavor)}, :remote => true do |f| %>
+      <%= f.text_field :mark, :placeholder => '0-20', :size => 2 %>
+      <%= f.hidden_field :endeavor_id, :value => endeavor.id %>
+      <%= f.hidden_field :date, :value => Date.today %>
+      <%= f.submit :k %>
+    <% end if endeavor && endeavor.scores.where(:date => Date.today).blank? %>
+  </td>
   <td><%= link_to goal.title, goal %></td>
   <td><%= goal.description %></td>
   <td><%= link_to pluralize(goal.endeavors.count, 'member'), goal_members_path(goal) %>

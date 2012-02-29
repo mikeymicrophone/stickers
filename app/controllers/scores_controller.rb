@@ -48,6 +48,7 @@ class ScoresController < ApplicationController
 
     respond_to do |format|
       if @score.save
+        format.js
         format.html { redirect_to @score.member, :notice => 'Score was successfully created.' }
         format.json { render :json => @score, :status => :created, :location => @score }
       else
