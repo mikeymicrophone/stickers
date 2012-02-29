@@ -6,7 +6,7 @@ class InviteesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @invitees }
+      format.json { render :json => @invitees }
     end
   end
 
@@ -17,7 +17,7 @@ class InviteesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @invitee }
+      format.json { render :json => @invitee }
     end
   end
 
@@ -28,7 +28,7 @@ class InviteesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @invitee }
+      format.json { render :json => @invitee }
     end
   end
 
@@ -44,11 +44,11 @@ class InviteesController < ApplicationController
 
     respond_to do |format|
       if @invitee.save
-        format.html { redirect_to @invitee, notice: 'Invitee was successfully created.' }
-        format.json { render json: @invitee, status: :created, location: @invitee }
+        format.html { redirect_to @invitee, :notice => 'Invitee was successfully created.' }
+        format.json { render :json => @invitee, :status => :created, :location => @invitee }
       else
-        format.html { render action: "new" }
-        format.json { render json: @invitee.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @invitee.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -70,11 +70,11 @@ class InviteesController < ApplicationController
 
     respond_to do |format|
       if @invitee.update_attributes(params[:invitee])
-        format.html { redirect_to @invitee, notice: 'Invitee was successfully updated.' }
+        format.html { redirect_to @invitee, :notice => 'Invitee was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @invitee.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @invitee.errors, :status => :unprocessable_entity }
       end
     end
   end

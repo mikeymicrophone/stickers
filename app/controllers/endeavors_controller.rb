@@ -6,7 +6,7 @@ class EndeavorsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @endeavors }
+      format.json { render :json => @endeavors }
     end
   end
 
@@ -17,7 +17,7 @@ class EndeavorsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @endeavor }
+      format.json { render :json => @endeavor }
     end
   end
 
@@ -28,7 +28,7 @@ class EndeavorsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @endeavor }
+      format.json { render :json => @endeavor }
     end
   end
 
@@ -45,11 +45,11 @@ class EndeavorsController < ApplicationController
 
     respond_to do |format|
       if @endeavor.save
-        format.html { redirect_to @endeavor.member, notice: 'You rock.' }
-        format.json { render json: @endeavor, status: :created, location: @endeavor }
+        format.html { redirect_to @endeavor.member, :notice => 'You rock.' }
+        format.json { render :json => @endeavor, :status => :created, :location => @endeavor }
       else
-        format.html { render action: "new" }
-        format.json { render json: @endeavor.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @endeavor.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -61,11 +61,11 @@ class EndeavorsController < ApplicationController
 
     respond_to do |format|
       if @endeavor.update_attributes(params[:endeavor])
-        format.html { redirect_to @endeavor, notice: 'Endeavor was successfully updated.' }
+        format.html { redirect_to @endeavor, :notice => 'Endeavor was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @endeavor.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @endeavor.errors, :status => :unprocessable_entity }
       end
     end
   end

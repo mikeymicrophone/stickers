@@ -6,7 +6,7 @@ class DaysController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @days }
+      format.json { render :json => @days }
     end
   end
 
@@ -17,7 +17,7 @@ class DaysController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @day }
+      format.json { render :json => @day }
     end
   end
 
@@ -28,7 +28,7 @@ class DaysController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @day }
+      format.json { render :json => @day }
     end
   end
 
@@ -44,11 +44,11 @@ class DaysController < ApplicationController
 
     respond_to do |format|
       if @day.save
-        format.html { redirect_to @day, notice: 'Day was successfully created.' }
-        format.json { render json: @day, status: :created, location: @day }
+        format.html { redirect_to @day, :notice => 'Day was successfully created.' }
+        format.json { render :json => @day, :status => :created, :location => @day }
       else
-        format.html { render action: "new" }
-        format.json { render json: @day.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @day.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class DaysController < ApplicationController
 
     respond_to do |format|
       if @day.update_attributes(params[:day])
-        format.html { redirect_to @day, notice: 'Day was successfully updated.' }
+        format.html { redirect_to @day, :notice => 'Day was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @day.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @day.errors, :status => :unprocessable_entity }
       end
     end
   end
