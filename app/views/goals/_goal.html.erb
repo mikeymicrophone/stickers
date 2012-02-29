@@ -1,5 +1,10 @@
-<tr>
+<tr id="<%= dom_id goal %>">
   <td><%= link_to goal.title, goal %></td>
   <td><%= goal.description %></td>
-  <td><%= link_to pluralize(goal.endeavors.count, 'member'), goal_members_path(goal) %> are currently endeavoring upon this goal.</td>
+  <td><%= link_to pluralize(goal.endeavors.count, 'member'), goal_members_path(goal) %>
+    <%= goal.endeavors.count == 1 ? 'is' : 'are' %> currently endeavoring upon this goal.
+  <% unless current_member.andand.goals.andand.include?(goal) %>
+    <%= link_to '(add)', endeavors_path(:endeavor => {:goal_id => goal.id, :member_id => current_member.id}), :method => :post, :remote => true if current_member %>
+  <% end %>  
+  </td>
 </tr>

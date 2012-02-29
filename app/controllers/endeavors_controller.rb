@@ -45,6 +45,7 @@ class EndeavorsController < ApplicationController
 
     respond_to do |format|
       if @endeavor.save
+        format.js
         format.html { redirect_to @endeavor.member, :notice => 'You rock.' }
         format.json { render :json => @endeavor, :status => :created, :location => @endeavor }
       else

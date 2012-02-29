@@ -4,6 +4,8 @@ class Endeavor < ActiveRecord::Base
   has_many :scores
   has_many :details, :as => :target
   
+  validates_uniqueness_of :goal_id, :scope => :member_id
+  
   def goal_name
     goal.title
   end
