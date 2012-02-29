@@ -1,8 +1,12 @@
-#registration_stuff
+#registration_stuff {
   a, form {
 		float: right;
 	}
 	textarea {
 		display: none;
 	}
-	
+}
+
+.hidden {
+	display: none;
+}

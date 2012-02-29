@@ -18,7 +18,7 @@
   </div>
 <% end %>
 
-<% if current_member.endeavors.where(:goal => @goal) %>
+<% if current_member.endeavors.where(:goal_id => @goal).present? %>
   <%= link_to_function 'enter', "$('#new_score').show()"%>
   <%= form_for(current_member.endeavors.where(:goal_id => @goal.id).first.scores.new, :html => {:style => "display:none"}) do |f| %>
     <div class="field">
@@ -32,6 +32,3 @@
 <% else %>
   <%= link_to 'try this goal', new_endeavor_path(:endeavor => {:goal_id => @goal.id}) %>
 <% end %>
-
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>

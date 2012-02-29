@@ -48,6 +48,7 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
+        format.js
         format.html { redirect_to @goal, :notice => 'Goal was successfully created.' }
         format.json { render :json => @goal, :status => :created, :location => @goal }
       else

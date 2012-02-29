@@ -1,15 +1,19 @@
 <h1>Stickers Club Goals</h1>
 
-<table>
-  <% @goals.each do |goal| %>
-    <tr>
-      <td><%= link_to goal.title, goal %></td>
-      <td><%= goal.description %></td>
-      <td><%= pluralize goal.endeavors.count, 'member' %> endeavoring upon this goal!</td>
-    </tr>
-  <% end %>
+<table id="goals">
+  <%= render @goals %>
 </table>
 
 <br />
 
-<%= link_to 'New Goal', new_goal_path %>
+<%= link_to 'New Goal Baby!', '#goal_form', :id => 'new_goal_link' %>
+
+<div class="hidden">
+  <div id="goal_form">
+    <%= form_for Goal.new, :remote => true do |f| %>
+      <%= f.text_field :title, :placeholder => 'Eat better', :size => 54 %>
+      <%= f.submit :okready %><br>
+      <%= f.text_area :description, :placeholder => 'Start every meal with something green', :size => '40x4' %>
+    <% end %>
+  </div>
+</div>

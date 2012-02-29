@@ -1,0 +1,5 @@
+<tr>
+  <td><%= link_to goal.title, goal %></td>
+  <td><%= goal.description %></td>
+  <td><%= link_to pluralize(goal.endeavors.count, 'member'), goal_members_path(goal) %> are currently endeavoring upon this goal.</td>
+</tr>

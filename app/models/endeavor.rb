@@ -29,11 +29,11 @@ class Endeavor < ActiveRecord::Base
   end
   
   def average
-    (score/scored_days_for)*5.0
+    (score/scored_days_for)*5.0 unless scored_days_for.zero?
   end
   
   def average_last_7_days
-    (score(7)/scored_days_for(7))*5.0
+    (score(7)/scored_days_for(7))*5.0 unless scored_days_for(7).zero?
   end
   
 end

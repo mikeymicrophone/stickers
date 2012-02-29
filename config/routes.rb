@@ -21,7 +21,9 @@ Stickers::Application.routes.draw do
 
   resources :endeavors
 
-  resources :goals
+  resources :goals do
+    resources :members
+  end
 
   devise_for :members
   
