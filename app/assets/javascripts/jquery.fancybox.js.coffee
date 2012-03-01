@@ -453,8 +453,7 @@
       current = F.current
       type = current.type
       switch type
-        when "inline", "ajax"
-      , "html"
+        when "inline", "ajax", "html"
           content = current.content
           if content instanceof $
             content = content.show().detach()
