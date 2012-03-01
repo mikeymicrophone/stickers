@@ -24,6 +24,6 @@ class Member < ActiveRecord::Base
   end
   
   def credit_invitee!
-    Invitee.find(invitee_id).andand.update_attribute :member_id, id
+    Invitee.find_by_id(invitee_id).andand.update_attribute :member_id, id
   end
 end
