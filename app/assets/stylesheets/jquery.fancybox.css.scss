@@ -103,7 +103,7 @@
 	width: 40%;
 	height: 100%;
 	cursor: pointer;
-	background: transparent url('blank.gif'); /* helps IE */
+	background: transparent url('blank.gif');
 	z-index: 1003;
 }
 
@@ -149,8 +149,6 @@
 	visibility: hidden;
 }
 
-/* Overlay helper */
-
 #fancybox-overlay {
 	position: absolute;
 	top: 0;
@@ -160,8 +158,6 @@
 	z-index: 1001;
 	background: #000;
 }
-
-/* Title helper */
 
 .fancybox-title {
 	visibility: hidden;	
@@ -188,7 +184,7 @@
 	display: inline-block;
 	margin-right: -100%;
 	padding: 2px 20px;
-	background: transparent; /* Fallback for web browsers that doesn't support RGBa */
+	background: transparent;
 	background: rgba(0, 0, 0, 0.8);
 	-webkit-border-radius: 15px;
 	   -moz-border-radius: 15px;
