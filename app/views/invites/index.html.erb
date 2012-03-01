@@ -15,7 +15,7 @@
     <td><%= invite.member_id %></td>
     <td><%= link_to 'Show', invite %></td>
     <td><%= link_to 'Edit', edit_invite_path(invite) %></td>
-    <td><%= link_to 'Destroy', invite, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', invite, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
