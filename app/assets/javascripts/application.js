@@ -10,6 +10,11 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//
 //= require jquery
 //= require jquery_ujs
+//= require jquery.fancybox
+//= require jquery.fancybox-buttons
+//= require jquery.fancybox-thumbs
+//= require jquery.mousewheel-3.0.6.pack
 //= require_tree .
