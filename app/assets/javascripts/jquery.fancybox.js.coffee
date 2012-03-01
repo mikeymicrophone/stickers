@@ -1,14 +1,14 @@
-/*!
- * fancyBox - jQuery Plugin
- * version: 2.0.5 (21/02/2012)
- * @requires jQuery v1.6 or later
- *
- * Examples at http://fancyapps.com/fancybox/
- * License: www.fancyapps.com/fancybox/#license
- *
- * Copyright 2012 Janis Skarnelis - janis@fancyapps.com
- *
- */
+#!
+# fancyBox - jQuery Plugin
+# version: 2.0.5 (21/02/2012)
+# @requires jQuery v1.6 or later
+#
+# Examples at http://fancyapps.com/fancybox/
+# License: www.fancyapps.com/fancybox/#license
+#
+# Copyright 2012 Janis Skarnelis - janis@fancyapps.com
+#
+#
 
 ((window, document, $) ->
   W = $(window)

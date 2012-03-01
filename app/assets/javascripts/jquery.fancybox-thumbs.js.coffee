@@ -1,23 +1,23 @@
- /*!
- * Thumbnail helper for fancyBox
- * version: 1.0.2
- * @requires fancyBox v2.0 or later
- *
- * Usage: 
- *     $(".fancybox").fancybox({
- *         thumbs: {
- *             width	: 50,
- *             height	: 50
- *         }
- *     });
- * 
- * Options:
- *     width - thumbnail width
- *     height - thumbnail height
- *     source - function to obtain the URL of the thumbnail image
- *     position - 'top' or 'bottom'
- * 
- */
+#*!
+# Thumbnail helper for fancyBox
+# version: 1.0.2
+# @requires fancyBox v2.0 or later
+#
+# Usage: 
+#     $(".fancybox").fancybox({
+#         thumbs: {
+#             width	: 50,
+#             height	: 50
+#         }
+#     });
+# 
+# Options:
+#     width - thumbnail width
+#     height - thumbnail height
+#     source - function to obtain the URL of the thumbnail image
+#     position - 'top' or 'bottom'
+# 
+#
 (($) ->
   F = $.fancybox
   F.helpers.thumbs =
