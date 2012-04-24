@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226231549) do
+ActiveRecord::Schema.define(:version => 20120424074323) do
 
   create_table "days", :force => true do |t|
     t.date     "date"
@@ -99,5 +100,23 @@ ActiveRecord::Schema.define(:version => 20120226231549) do
 
   add_index "scores", ["day_id"], :name => "index_scores_on_day_id"
   add_index "scores", ["endeavor_id"], :name => "index_scores_on_endeavor_id"
+
+  create_table "tierings", :force => true do |t|
+    t.integer  "endeavor_id"
+    t.integer  "tier_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "tierings", ["endeavor_id"], :name => "index_tierings_on_endeavor_id"
+  add_index "tierings", ["tier_id"], :name => "index_tierings_on_tier_id"
+
+  create_table "tiers", :force => true do |t|
+    t.string   "name"
+    t.text     "note"
+    t.integer  "member_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

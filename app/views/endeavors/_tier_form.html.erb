@@ -1,0 +1,20 @@
+<% if @endeavor.tier.present? %>
+  <%= form_for @endeavor.tiering do |f| %>
+    <%= f.hidden_field :endeavor_id %>
+    <%= f.select :tier_id, options_from_collection_for_select(current_member.tiers, :id, :name, @endeavor.tier.id), :include_blank => true %>
+    <%= f.submit "Add to tier" %>
+  <% end %>  
+<% else %>
+  <%= form_for Tiering.new(:endeavor => @endeavor) do |f| %>
+    <%= f.hidden_field :endeavor_id %>
+    <%= f.select :tier_id, options_from_collection_for_select(current_member.tiers, :id, :name), :include_blank => true %><%= link_to_function 'new tier', "$('#new_tier').show()"%>
+    <%= f.submit "Add to tier" %>
+  <% end %>
+  <%= form_for Tier.new, :html => {:class => 'hidden'} do |f| %>
+    <%= f.hidden_field :member_id, :value => current_member.id %>
+    <%= hidden_field_tag :endeavor_id, @endeavor.id %>
+    <%= f.text_field :name, :placeholder => 'name/priority' %><br>
+    <%= f.text_area :note, :size => '30x2', :placeholder => 'optional description for tier' %>
+    <%= f.submit "Add to new tier" %>
+  <% end %>
+<% end %>
