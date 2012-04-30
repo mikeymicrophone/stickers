@@ -1,0 +1,27 @@
+<h1>Listing tiers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Note</th>
+    <th>Member</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tiers.each do |tier| %>
+  <tr>
+    <td><%= tier.name %></td>
+    <td><%= tier.note %></td>
+    <td><%= tier.member_id %></td>
+    <td><%= link_to 'Show', tier %></td>
+    <td><%= link_to 'Edit', edit_tier_path(tier) %></td>
+    <td><%= link_to 'Destroy', tier, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tier', new_tier_path %>

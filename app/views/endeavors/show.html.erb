@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Goal:</b>
   <%= link_to @endeavor.goal.title, @endeavor.goal %>
 </p>
 
 <p>
-  <b>Member:</b>
-  <%= link_to @endeavor.member.first_name, @endeavor.member %>
+  <% if @endeavor.member != current_member %>
+    belongs to:
+    <%= link_to @endeavor.member.first_name, @endeavor.member %>
+  <% end %>
 </p>
 
 <div>
@@ -18,5 +19,4 @@
   <%= render @endeavor.scores %>...
 </div>
 
-<%= link_to 'Edit', edit_endeavor_path(@endeavor) %> |
-<%= link_to 'Back', endeavors_path %>
+<%= link_to 'Edit.', edit_endeavor_path(@endeavor) if current_member == @endeavor.member %>

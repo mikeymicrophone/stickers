@@ -5,8 +5,14 @@ class GoalsController < ApplicationController
     @goals = if params[:member_id]
       Member.find(params[:member_id]).goals
     else
-      Goal.all
-    end.sort_by { rand }
+      Goal.where ''
+    end
+    
+    @goals = if params[:sort]
+      @goals.alphabetical
+    else
+      @goals.sort_by { rand }
+    end
 
     respond_to do |format|
       format.html # index.html.erb

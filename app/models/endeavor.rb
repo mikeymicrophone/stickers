@@ -3,6 +3,8 @@ class Endeavor < ActiveRecord::Base
   belongs_to :member
   has_many :scores
   has_many :details, :as => :target
+  has_many :tierings
+  has_many :tiers, :through => :tierings
   
   validates_uniqueness_of :goal_id, :scope => :member_id
   
@@ -36,6 +38,14 @@ class Endeavor < ActiveRecord::Base
   
   def average_last_7_days
     (score(7)/scored_days_for(7))*5.0 unless scored_days_for(7).zero?
+  end
+  
+  def tiering
+    tierings.first
+  end
+  
+  def tier
+    tiers.first
   end
   
 end

@@ -1,0 +1,25 @@
+<%= form_for(@tiering) do |f| %>
+  <% if @tiering.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tiering.errors.count, "error") %> prohibited this tiering from being saved:</h2>
+
+      <ul>
+      <% @tiering.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :endeavor %><br />
+    <%= f.text_field :endeavor %>
+  </div>
+  <div class="field">
+    <%= f.label :tier %><br />
+    <%= f.text_field :tier %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

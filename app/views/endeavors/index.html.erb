@@ -4,6 +4,7 @@
 <% @endeavors.each do |endeavor| %>
   <tr>
     <td><%= link_to endeavor.goal.title, endeavor.goal %></td>
+    <td><%= link_to 'p', endeavor %></td>
     <td><%= endeavor.member.first_name %></td>
     <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
   </tr>

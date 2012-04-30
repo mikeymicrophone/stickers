@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%= @tier.name %></b>
+</p>
+
+<p>
+  <%= @tier.note %>
+</p>
+
+<ol>
+  <% @tier.endeavors.each do |endeavor| %>
+    <li><%= link_to endeavor.goal_name, endeavor %></li>
+  <% end %>
+</ol>
+<%= link_to_function 'add', "$('#new_tiering').show()" %>
+<%= form_for @tier.tierings.new, :html => {:class => :hidden} do |f| %>
+  <%= f.hidden_field :tier_id %>
+  <%= f.select :endeavor_id, options_from_collection_for_select(current_member.endeavors, :id, :goal_name), :include_blank => true %>
+  <%= f.submit "add to tier" %>
+<% end %>

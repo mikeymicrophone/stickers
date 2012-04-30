@@ -1,4 +1,8 @@
 Stickers::Application.routes.draw do
+  resources :tierings
+
+  resources :tiers
+
   resources :invitees do
     member do
       get :confirmation
