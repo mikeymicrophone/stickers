@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <nav>
@@ -25,7 +26,9 @@
       <%= f.text_area :message, :size => '40x3', :placeholder => 'Message' %>
     <% end %>
   </nav>
-  <%= yield %>
-
+  
+  <div id="content">
+    <%= yield %>
+  </div>
 </body>
 </html>
