@@ -11,10 +11,11 @@
 		</td>
     <td><%= tier.note %></td>
     <td><%= link_to pluralize(tier.endeavors.count, 'goal'), tier_endeavors_path(tier) %>
-			<td><%= link_to_function 'add detail', "$('##{dom_id(tier, :detail_on)}').show()" %></td>
-		</tr>
+		<td><%= link_to_function 'add detail', "$('##{dom_id(tier, :detail_on)}').show()" %></td>
+		<td><%= link_to 'copy', copy_tier_path(tier), :method => :post unless tier.member == current_member %></td>
+	</tr>
 
-		<tr>
+	<tr>
 		<td colspan=9>
 
 		  <%= div_for tier, :details do %>

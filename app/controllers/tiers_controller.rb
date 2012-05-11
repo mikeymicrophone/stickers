@@ -61,6 +61,17 @@ class TiersController < ApplicationController
       end
     end
   end
+  
+  def copy
+    @tier = Tier.find params[:id]
+    @copy = Tier.new @tier.attributes
+    @copy.member = current_member
+    @copy.save
+    @tier.endeavors.each do |endeavor|
+      current_member.endeavors.create(:goal_id => endeavor.goal_id).tierings.create(:tier => @copy)
+    end
+    redirect_to @copy
+  end
 
   # PUT /tiers/1
   # PUT /tiers/1.json

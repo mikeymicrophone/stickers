@@ -17,12 +17,12 @@
 	  </li>
   <% end %>
 </ol>
-<%= link_to_function 'add', "$('#new_tiering').show()" %>
+<%= link_to_function 'add', "$('#new_tiering').show()" if @tier.member == current_member %>
 <%= form_for @tier.tierings.new, :html => {:class => :hidden} do |f| %>
   <%= f.hidden_field :tier_id %>
   <%= f.select :endeavor_id, options_from_collection_for_select(current_member.endeavors.not_in_tier(@tier), :id, :goal_name), :include_blank => true %>
   <%= f.submit "add to tier" %>
-<% end %>
+<% end if @tier.member == current_member %>
 
 <%= link_to 'New Goal Baby!', '#goal_form', :id => 'new_goal_link' %>
 
@@ -32,14 +32,16 @@
       <%= f.text_field :title, :placeholder => 'Eat better', :size => 54 %>
       <%= f.submit :okready %><br>
       <%= f.text_area :description, :placeholder => 'Start every meal with something green', :size => '40x4' %>
-      <%= hidden_field :tier, :id, :value => @tier.id %>
+      <%= hidden_field :tier, :id, :value => @tier.id if @tier.member == current_member %>
     <% end %>
   </div>
 </div>
 
 <div id="sub_clubs">
-	<%= link_to 'bring this tier to a club', new_tier_house_path(:tier_house => {:tier_id => @tier.id}) %>
+	<%= link_to 'bring this tier to a club', new_tier_house_path(:tier_house => {:tier_id => @tier.id}) if @tier.member == current_member %>
 </div>
+
+<%= link_to 'copy', copy_tier_path(@tier), :method => :post unless @tier.member == current_member %>
 
 <div id="details">
 	<%= render @tier.details %>

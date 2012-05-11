@@ -1,13 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <%= link_to @endeavor.goal.title, @endeavor.goal %>
+  <%= link_to @endeavor.goal_name, @endeavor.goal %>
+  <span class="small"><%= links_to @endeavor.tiers %></span>
 </p>
 
 <p>
   <% if @endeavor.member != current_member %>
     belongs to:
     <%= link_to @endeavor.member.first_name, @endeavor.member %>
+    <%= link_to 'copy', endeavors_path(:endeavor => {:goal_id => @endeavor.goal_id}), :method => :post %>
   <% end %>
 </p>
 
@@ -17,10 +19,31 @@
 
 <div>
   <%= render @endeavor.scores %>...
+
+  <% @endeavor.scores.each do |score| %>
+    <%= div_for score do %>
+      <%= score.mark %> on <%= score.date %>
+    <% end %>
+  <% end %>
+  <%= div_for @endeavor, :class => medal_for(@endeavor.scores.sum(:mark)) do %>
+    <%= @endeavor.scores.sum(:mark) %>
+  <% end %>
+	<%= @endeavor.average %>
+	<span id="running_average"><%= @endeavor.average_last_7_days %></span>
+  <%= link_to_function 'enter', "$('##{dom_id(@endeavor, :score_for)}').show()"%>
+  <%= form_for(@endeavor.scores.new, :html => {:style => "display:none", :id => dom_id(@endeavor, :score_for)}) do |f| %>
+    <div class="field">
+      <%= f.text_field :mark, :size => 2, :placeholder => 20 %>
+      <%= f.date_select :date %>
+      <%= f.submit :ok %>
+    </div>
+
+    <%= f.hidden_field :endeavor_id %>
+  <% end %>
 </div>
 
 <%= link_to 'Edit.', edit_endeavor_path(@endeavor) if current_member == @endeavor.member %>
-<td><%= link_to_function 'add detail', "$('##{dom_id(@endeavor, :detail_on)}').show()" %></td>
+<%= link_to_function 'add detail', "$('##{dom_id(@endeavor, :detail_on)}').show()" %>
 
 
 <%= div_for @endeavor, :details do %>
@@ -33,4 +56,9 @@
   <%= f.submit :save %>
   <%= f.hidden_field :target_type %>
   <%= f.hidden_field :target_id %>
+<% end %>
+
+<% @endeavor.goal.endeavors.where('id != ?', @endeavor.id).each do |endeavor| %>
+  <%= link_to endeavor.member.first_name, endeavor.member %>
+  <%= link_to endeavor.average_last_7_days.to_i, endeavor %>
 <% end %>

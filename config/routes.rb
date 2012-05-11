@@ -10,6 +10,9 @@ Stickers::Application.routes.draw do
   resources :tierings
 
   resources :tiers do
+    member do
+      post :copy
+    end
     resources :endeavors
   end
 
