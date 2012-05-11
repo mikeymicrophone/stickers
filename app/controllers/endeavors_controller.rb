@@ -2,7 +2,11 @@ class EndeavorsController < ApplicationController
   # GET /endeavors
   # GET /endeavors.json
   def index
-    @endeavors = Endeavor.all
+    @endeavors = if params[:tier_id]
+      Tier.find(params[:tier_id]).endeavors
+    else
+      Endeavor.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb

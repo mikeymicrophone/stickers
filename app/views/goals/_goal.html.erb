@@ -1,6 +1,6 @@
 <tr id="<%= dom_id goal %>">
   <td>
-    <% endeavor = current_member && current_member.endeavors.where(:goal_id => goal).first%>
+    <% endeavor = current_member && current_member.endeavors.where(:goal_id => goal).first %>
     <%= form_for Score.new, :html => {:id => dom_id(endeavor)}, :remote => true do |f| %>
       <%= f.text_field :mark, :placeholder => '0-20', :size => 2 %>
       <%= f.hidden_field :endeavor_id, :value => endeavor.id %>
@@ -11,7 +11,6 @@
   <td><%= link_to goal.title, goal %></td>
   <td><%= goal.description %></td>
   <td><%= link_to pluralize(goal.endeavors.count, 'member'), goal_members_path(goal) %>
-    <%= goal.endeavors.count == 1 ? 'is' : 'are' %> currently endeavoring upon this goal.
   <% unless current_member.andand.goals.andand.include?(goal) %>
     <%= link_to '(add)', endeavors_path(:endeavor => {:goal_id => goal.id, :member_id => current_member.id}), :method => :post, :remote => true if current_member %>
   <% end %>  
