@@ -40,3 +40,7 @@
 <div id="sub_clubs">
 	<%= link_to 'bring this tier to a club', new_tier_house_path(:tier_house => {:tier_id => @tier.id}) %>
 </div>
+
+<div id="details">
+	<%= render @tier.details %>
+</div>

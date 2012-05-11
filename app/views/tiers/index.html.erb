@@ -11,6 +11,23 @@
 		</td>
     <td><%= tier.note %></td>
     <td><%= link_to pluralize(tier.endeavors.count, 'goal'), tier_endeavors_path(tier) %>
+			<td><%= link_to_function 'add detail', "$('##{dom_id(tier, :detail_on)}').show()" %></td>
+		</tr>
+
+		<tr>
+		<td colspan=9>
+
+		  <%= div_for tier, :details do %>
+
+		  <% end %>
+
+		  <%= form_for tier.details.new, :html => {:id => dom_id(tier, :detail_on), :style => "display:none"} do |f| %>
+		    <%= f.text_area :note, :size => '40x5' %>
+		    <%= f.file_field :payload %>
+		    <%= f.submit :save %>
+		    <%= f.hidden_field :target_type %>
+		    <%= f.hidden_field :target_id %>
+		  <% end %>
   </tr>
 <% end %>
 </table>

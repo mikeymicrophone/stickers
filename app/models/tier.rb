@@ -4,4 +4,5 @@ class Tier < ActiveRecord::Base
   has_many :endeavors, :through => :tierings
   has_many :tier_houses
   has_many :sub_clubs, :through => :tierhouses
+  has_many :details, :as => :target
 end
