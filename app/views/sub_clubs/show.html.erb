@@ -5,3 +5,9 @@
 <p>
   <%= @sub_club.description %>
 </p>
+
+<ul>
+	<% @sub_club.members.each do |member| %>
+	  <li><%= link_to member.first_name, member %></li>
+	<% end %>
+</ul>

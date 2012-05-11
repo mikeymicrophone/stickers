@@ -2,7 +2,7 @@
 
 <% @sub_clubs.each do |sub_club| %>
   <div>
-	  <strong><em><%= sub_club.name %></em></strong>
+	  <strong><em><%= link_to sub_club.name, sub_club %></em></strong>
 	  <%= sub_club.description %>
 	  <%= link_to 'join', memberships_path(:membership => {:sub_club_id => sub_club}), :method => :post unless current_member.is_a_member_of?(sub_club) %>
 	</div>

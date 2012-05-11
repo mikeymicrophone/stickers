@@ -41,6 +41,7 @@ class TiersController < ApplicationController
   # POST /tiers.json
   def create
     @tier = Tier.new(params[:tier])
+    @tier.member = current_member
 
     respond_to do |format|
       if @tier.save
