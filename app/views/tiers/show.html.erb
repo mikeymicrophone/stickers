@@ -2,7 +2,7 @@
 
 <p>
   <b><%= @tier.name %></b>
-  (one of <%= link_to @tier.member.first_name, @tier.member %>'s tiers)
+  (one of <%= link_to @tier.member.first_name, @tier.member %>'s <%= link_to 'tiers', member_tiers_path(@tier.member) %>)
 </p>
 
 <p>
@@ -23,3 +23,20 @@
   <%= f.select :endeavor_id, options_from_collection_for_select(current_member.endeavors.not_in_tier(@tier), :id, :goal_name), :include_blank => true %>
   <%= f.submit "add to tier" %>
 <% end %>
+
+<%= link_to 'New Goal Baby!', '#goal_form', :id => 'new_goal_link' %>
+
+<div class="hidden">
+  <div id="goal_form">
+    <%= form_for Goal.new, :remote => true do |f| %>
+      <%= f.text_field :title, :placeholder => 'Eat better', :size => 54 %>
+      <%= f.submit :okready %><br>
+      <%= f.text_area :description, :placeholder => 'Start every meal with something green', :size => '40x4' %>
+      <%= hidden_field :tier, :id, :value => @tier.id %>
+    <% end %>
+  </div>
+</div>
+
+<div id="sub_clubs">
+	<%= link_to 'bring this tier to a club', new_tier_house_path(:tier_house => {:tier_id => @tier.id}) %>
+</div>

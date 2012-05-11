@@ -1,5 +1,7 @@
 class Tier < ActiveRecord::Base
+  belongs_to :member
   has_many :tierings
   has_many :endeavors, :through => :tierings
-  belongs_to :member
+  has_many :tier_houses
+  has_many :sub_clubs, :through => :tierhouses
 end

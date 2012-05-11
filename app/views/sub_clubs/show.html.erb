@@ -11,3 +11,9 @@
 	  <li><%= link_to member.first_name, member %></li>
 	<% end %>
 </ul>
+
+<ul>
+	<% @sub_club.tiers.each do |tier| %>
+	  <li><%= link_to tier.name, tier %></li>
+	<% end %>
+</ul>

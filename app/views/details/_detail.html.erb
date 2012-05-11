@@ -1,2 +1,4 @@
-<%= detail.note %>
-<%= link_to detail.payload.path.split('/').last, download_payload_for_detail_path(detail) if detail.payload.present? %>
+<li>
+  <%= detail.note %>
+  <%= link_to detail.payload.path.split('/').last, download_payload_for_detail_path(detail) if detail.payload.present? %>
+</li>

@@ -8,13 +8,19 @@
   <%= @goal.description %>
 </p>
 
-<% @goal.members.each do |member| %>
+<% @goal.endeavors.each do |endeavor| %>
+  <% member = endeavor.member %>
   <div>
     <%= member.first_name %> has
     <%= member.score_for(@goal) %> in
     <%= pluralize member.scored_days_for(@goal), 'day' %> for an average percentage of 
     <%= (member.score_for(@goal).to_i * 5.0 / member.scored_days_for(@goal)).to_i if member.scored_days_for(@goal) > 0 %>
-    <%= link_to 'show', endeavor_path(@goal.endeavors.where(:member_id => member.id).first)%>
+    <% if endeavor.tierings.present? %>
+      <% endeavor.tiers.each do |tier| %>
+        <%= link_to tier.name, tier %>
+      <% end %>
+    <% end %>
+    <%= link_to 'show', endeavor_path(endeavor) %>
   </div>
 <% end %>
 

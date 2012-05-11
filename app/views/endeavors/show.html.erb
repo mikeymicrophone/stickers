@@ -20,3 +20,17 @@
 </div>
 
 <%= link_to 'Edit.', edit_endeavor_path(@endeavor) if current_member == @endeavor.member %>
+<td><%= link_to_function 'add detail', "$('##{dom_id(@endeavor, :detail_on)}').show()" %></td>
+
+
+<%= div_for @endeavor, :details do %>
+
+<% end %>
+
+<%= form_for @endeavor.details.new, :html => {:id => dom_id(@endeavor, :detail_on), :style => "display:none"} do |f| %>
+  <%= f.text_area :note, :size => '40x5' %>
+  <%= f.file_field :payload %>
+  <%= f.submit :save %>
+  <%= f.hidden_field :target_type %>
+  <%= f.hidden_field :target_id %>
+<% end %>

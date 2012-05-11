@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
   # GET /goals/1.json
   def show
     @goal = Goal.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @goal }
@@ -54,6 +54,10 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
+        if params[:tier]
+          @endeavor = @goal.endeavors.by_member(current_member).create
+          @tiering = @endeavor.tierings.for_tier(params[:tier][:id]).create
+        end
         format.js
         format.html { redirect_to @goal, :notice => 'Goal was successfully created.' }
         format.json { render :json => @goal, :status => :created, :location => @goal }

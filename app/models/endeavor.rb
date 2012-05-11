@@ -9,6 +9,7 @@ class Endeavor < ActiveRecord::Base
   validates_uniqueness_of :goal_id, :scope => :member_id
   
   scope :not_in_tier, lambda { |tier| where "id not in (?)", tier.endeavors.map(&:id) }
+  scope :by_member, lambda { |member| where(:member_id => member)}
   
   def goal_name
     goal.title
