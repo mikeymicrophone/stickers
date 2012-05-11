@@ -12,6 +12,8 @@ class Member < ActiveRecord::Base
   has_many :scores, :through => :endeavors
   has_many :tiers
   has_many :tierings, :through => :tiers
+  has_many :memberships
+  has_many :sub_clubs, :through => :memberships
   
   attr_accessor :invitee_id
   
@@ -27,5 +29,9 @@ class Member < ActiveRecord::Base
   
   def credit_invitee!
     Invitee.find_by_id(invitee_id).andand.update_attribute :member_id, id
+  end
+  
+  def is_a_member_of? sub_club
+    memberships.where(:sub_club_id => sub_club.id).present?
   end
 end

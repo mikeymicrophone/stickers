@@ -41,10 +41,11 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(params[:membership])
+    @membership.member = current_member
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        format.html { redirect_to @membership.sub_club, notice: 'You joined!' }
         format.json { render json: @membership, status: :created, location: @membership }
       else
         format.html { render action: "new" }

@@ -1,25 +1,12 @@
-<h1>Listing sub_clubs</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>Sub Clubs</h1>
 
 <% @sub_clubs.each do |sub_club| %>
-  <tr>
-    <td><%= sub_club.name %></td>
-    <td><%= sub_club.description %></td>
-    <td><%= link_to 'Show', sub_club %></td>
-    <td><%= link_to 'Edit', edit_sub_club_path(sub_club) %></td>
-    <td><%= link_to 'Destroy', sub_club, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <div>
+	  <strong><em><%= sub_club.name %></em></strong>
+	  <%= sub_club.description %>
+	  <%= link_to 'join', memberships_path(:membership => {:sub_club_id => sub_club}), :method => :post unless current_member.is_a_member_of?(sub_club) %>
+	</div>
 <% end %>
-</table>
-
 <br />
 
 <%= link_to 'New Sub club', new_sub_club_path %>
