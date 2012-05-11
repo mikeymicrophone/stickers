@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424074323) do
+ActiveRecord::Schema.define(:version => 20120511053813) do
 
   create_table "days", :force => true do |t|
     t.date     "date"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(:version => 20120424074323) do
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
+  create_table "memberships", :force => true do |t|
+    t.integer  "sub_club_id"
+    t.integer  "member_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "memberships", ["member_id"], :name => "index_memberships_on_member_id"
+  add_index "memberships", ["sub_club_id"], :name => "index_memberships_on_sub_club_id"
+
   create_table "scores", :force => true do |t|
     t.integer  "endeavor_id"
     t.integer  "day_id"
@@ -100,6 +110,13 @@ ActiveRecord::Schema.define(:version => 20120424074323) do
 
   add_index "scores", ["day_id"], :name => "index_scores_on_day_id"
   add_index "scores", ["endeavor_id"], :name => "index_scores_on_endeavor_id"
+
+  create_table "sub_clubs", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "tierings", :force => true do |t|
     t.integer  "endeavor_id"

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sub club:</b>
+  <%= @membership.sub_club %>
+</p>
+
+<p>
+  <b>Member:</b>
+  <%= @membership.member %>
+</p>
+
+
+<%= link_to 'Edit', edit_membership_path(@membership) %> |
+<%= link_to 'Back', memberships_path %>
