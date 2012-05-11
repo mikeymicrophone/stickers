@@ -1,7 +1,9 @@
 Stickers::Application.routes.draw do
   resources :tierings
 
-  resources :tiers
+  resources :tiers do
+    resources :endeavors
+  end
 
   resources :invitees do
     member do
