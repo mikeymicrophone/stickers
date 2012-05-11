@@ -3,7 +3,13 @@
     <tr>
       <td><%= link_to member.first_name, member %></td>
       <td><%= link_to pluralize(member.goals.count, 'goal'), member_goals_path(member) %></td>
-      
+      <td>
+        <%= link_to pluralize(member.tiers.count, 'tier'), member_tiers_path(member) %>:
+				<% member.tiers.each do |tier| %>
+				  <%= link_to tier.name, tier %>
+				  (<%= tier.endeavors.count %>)
+				<% end %>
+	    </td>
     </tr>
   <% end %>
 </table>

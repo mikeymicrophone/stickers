@@ -40,6 +40,7 @@ Stickers::Application.routes.draw do
   resources :members, :only => [:index, :show] do
     resources :goals
     resources :scores
+    resources :tiers
   end
   
   root :to => 'goals#index'

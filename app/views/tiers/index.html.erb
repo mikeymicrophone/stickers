@@ -1,11 +1,13 @@
-<h1>Goal Tiers</h1>
+<h1><%= "#{@member.first_name}'s" if params[:member_id] %> Goal Tiers</h1>
 
 <table>
 <% @tiers.each do |tier| %>
   <tr>
     <td><%= link_to tier.name, tier %></td>
     <td><%= tier.note %></td>
-    <td><%= tier.member.first_name %></td>
+    <% unless params[:member_id] %>
+	    <td><%= tier.member.first_name %></td>
+    <% end %>
     <td><%= link_to pluralize(tier.endeavors.count, 'goal'), tier_endeavors_path(tier) %>
   </tr>
 <% end %>

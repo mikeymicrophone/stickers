@@ -2,8 +2,13 @@ class TiersController < ApplicationController
   # GET /tiers
   # GET /tiers.json
   def index
-    @tiers = Tier.all
-
+    @tiers = if params[:member_id]
+      @member = Member.find(params[:member_id])
+      @member.tiers
+    else
+      Tier.all
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tiers }
