@@ -11,7 +11,10 @@
 
 <ol>
   <% @tier.endeavors.each do |endeavor| %>
-    <li><%= link_to endeavor.goal_name, endeavor %></li>
+    <li>
+      <%= link_to endeavor.goal_name, endeavor %>
+	    <span id="running_average"><%= endeavor.average_last_7_days %></span>
+	  </li>
   <% end %>
 </ol>
 <%= link_to_function 'add', "$('#new_tiering').show()" %>
