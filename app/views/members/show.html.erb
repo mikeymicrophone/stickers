@@ -11,7 +11,12 @@
   </tr>
   <% @member.endeavors.each do |endeavor| %>
     <tr>
-      <td><%= link_to endeavor.goal.title, endeavor.goal %></td>
+      <td>
+				<% if endeavor.tier.present? %>
+				  (<%= link_to endeavor.tier.name, endeavor.tier %>)
+				<% end %>
+        <%= link_to endeavor.goal.title, endeavor.goal %>
+      </td>
       <td>
         <% endeavor.scores.each do |score| %>
           <%= div_for score do %>

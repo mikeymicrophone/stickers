@@ -1,7 +1,9 @@
 Stickers::Application.routes.draw do
   resources :memberships
 
-  resources :sub_clubs
+  resources :sub_clubs do
+    resources :members
+  end
 
   resources :tierings
 

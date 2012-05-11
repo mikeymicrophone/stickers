@@ -4,10 +4,14 @@ class MembersController < ApplicationController
   end
   
   def index
-    if params[:goal_id]
-      @members = Goal.find(params[:goal_id]).members
+    @members = if params[:goal_id]
+      @goal = Goal.find params[:goal_id]
+      @goal.members
+    elsif params[:sub_club_id]
+      @sub_club = SubClub.find params[:sub_club_id]
+      @sub_club.members
     else
-      @members = Member.all
+      Member.all
     end
   end
 end

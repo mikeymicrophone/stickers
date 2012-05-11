@@ -3,7 +3,7 @@ class TiersController < ApplicationController
   # GET /tiers.json
   def index
     @tiers = if params[:member_id]
-      @member = Member.find(params[:member_id])
+      @member = Member.find params[:member_id]
       @member.tiers
     else
       Tier.all
