@@ -15,14 +15,15 @@
     <%= link_to '(add)', endeavors_path(:endeavor => {:goal_id => goal.id, :member_id => current_member.id}), :method => :post, :remote => true if current_member %>
   <% end %>  
   </td>
-  <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
+  <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" if endeavor %></td>
 </tr>
 
 <tr>
 <td colspan=9>
+  
   <%= div_for endeavor, :details do %>
   
-  <% end %>
+  <% end if endeavor %>
   
   <%= form_for endeavor.details.new, :html => {:id => dom_id(endeavor, :detail_on), :style => "display:none"} do |f| %>
     <%= f.text_area :note, :size => '40x5' %>
@@ -30,5 +31,5 @@
     <%= f.submit :save %>
     <%= f.hidden_field :target_type %>
     <%= f.hidden_field :target_id %>
-  <% end %>
+  <% end if endeavor %>
 </td>
