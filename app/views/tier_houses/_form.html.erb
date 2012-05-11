@@ -1,0 +1,26 @@
+<%= form_for(@tier_house) do |f| %>
+  <% if @tier_house.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tier_house.errors.count, "error") %> prohibited this tier_house from being saved:</h2>
+
+      <ul>
+      <% @tier_house.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sub_club %><br />
+    <%= f.select :sub_club_id, options_from_collection_for_select(SubClub.without_tier(@tier_house.tier), :id, :name) %>
+    <% if @tier_house.tier %>
+	    <%= f.hidden_field :tier_id %>
+	  <% else %>
+	    <%= f.select :tier_id, options_from_collection_for_select(current_member.tiers, :id, :name)%>
+	  <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Listing tier_houses</h1>
+
+<table>
+  <tr>
+    <th>Sub club</th>
+    <th>Tier</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tier_houses.each do |tier_house| %>
+  <tr>
+    <td><%= tier_house.sub_club %></td>
+    <td><%= tier_house.tier %></td>
+    <td><%= link_to 'Show', tier_house %></td>
+    <td><%= link_to 'Edit', edit_tier_house_path(tier_house) %></td>
+    <td><%= link_to 'Destroy', tier_house, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tier house', new_tier_house_path %>

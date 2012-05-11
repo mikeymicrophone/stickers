@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sub club:</b>
+  <%= link_to @tier_house.sub_club.name, @tier_house.sub_club  %>
+</p>
+
+<p>
+  <b>Tier:</b>
+  <%= link_to @tier_house.tier.name, @tier_house.tier %>
+</p>
+
+
+<%= link_to 'Edit', edit_tier_house_path(@tier_house) %> |
+<%= link_to 'Back', tier_houses_path %>

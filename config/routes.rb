@@ -1,4 +1,6 @@
 Stickers::Application.routes.draw do
+  resources :tier_houses
+
   resources :memberships
 
   resources :sub_clubs do

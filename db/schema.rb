@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120511053813) do
+ActiveRecord::Schema.define(:version => 20120511081451) do
 
   create_table "days", :force => true do |t|
     t.date     "date"
@@ -117,6 +117,16 @@ ActiveRecord::Schema.define(:version => 20120511053813) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "tier_houses", :force => true do |t|
+    t.integer  "sub_club_id"
+    t.integer  "tier_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "tier_houses", ["sub_club_id"], :name => "index_tier_houses_on_sub_club_id"
+  add_index "tier_houses", ["tier_id"], :name => "index_tier_houses_on_tier_id"
 
   create_table "tierings", :force => true do |t|
     t.integer  "endeavor_id"
