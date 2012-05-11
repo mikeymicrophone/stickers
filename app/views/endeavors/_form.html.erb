@@ -1,7 +1,7 @@
 <%= form_for(@endeavor) do |f| %>
   <div class="field">
     <%= f.label :goal %><br />
-    <%= f.select :goal_id, options_from_collection_for_select(Goal.all, :id, :title, @endeavor.goal_id) %>
+    <%= f.select :goal_id, options_from_collection_for_select(Goal.not_endeavored_upon_by(current_member), :id, :title, @endeavor.goal_id) %>
   </div>
   <div class="actions">
     <%= f.submit %>

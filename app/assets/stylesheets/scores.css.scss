@@ -1,6 +1,12 @@
 // Place all the styles related to the scores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#running_average {
+  text-align: center;
+  font-size: 1.15em;
+  color: #eee;
+}
+
 .bronze {
   background-color: #B7552D;
 }

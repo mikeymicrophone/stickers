@@ -3,11 +3,13 @@
 <table>
 <% @tiers.each do |tier| %>
   <tr>
-    <td><%= link_to tier.name, tier %></td>
+    <td>
+	    <% unless params[:member_id] %>
+		    (<%= link_to tier.member.first_name, tier.member %>)
+	    <% end %>
+			<%= link_to tier.name, tier %>
+		</td>
     <td><%= tier.note %></td>
-    <% unless params[:member_id] %>
-	    <td><%= tier.member.first_name %></td>
-    <% end %>
     <td><%= link_to pluralize(tier.endeavors.count, 'goal'), tier_endeavors_path(tier) %>
   </tr>
 <% end %>
