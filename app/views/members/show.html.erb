@@ -1,7 +1,17 @@
 <div>
   <h1>
     <%= @member.first_name %>
-    <span class="small"><%= links_to @member.sub_clubs %></span>
+    <span class="small" id="memberships">
+      <% @member.memberships.each do |membership| %>
+        <% sub_club = membership.sub_club %>
+        <span class="club" id="<%= dom_id membership %>">
+				  <% if current_member == @member %>
+		        <span class="handle">'</span>
+		      <% end %>
+					<%= link_to sub_club.name, sub_club %>
+				</span>
+      <% end %>
+	  </span>
   </h1>
   has <%= @member.goals.count %> goals:
 </div>

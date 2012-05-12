@@ -69,6 +69,15 @@ class MembershipsController < ApplicationController
       end
     end
   end
+  
+  def sort
+    @memberships = Membership.find params[:membership]
+    @memberships.each do |membership|
+      membership.position = params['membership'].index(membership.id.to_s) + 1
+      membership.save
+    end
+    render :nothing => true
+  end
 
   # DELETE /memberships/1
   # DELETE /memberships/1.json

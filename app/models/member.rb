@@ -12,7 +12,7 @@ class Member < ActiveRecord::Base
   has_many :scores, :through => :endeavors
   has_many :tiers, :order => :position
   has_many :tierings, :through => :tiers
-  has_many :memberships
+  has_many :memberships, :order => :position
   has_many :sub_clubs, :through => :memberships
   
   attr_accessor :invitee_id
