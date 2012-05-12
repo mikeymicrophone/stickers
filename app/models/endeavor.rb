@@ -10,7 +10,7 @@ class Endeavor < ActiveRecord::Base
   
   acts_as_list :scope => :member_id
   
-  scope :not_in_tier, lambda { |tier| where "id not in (?)", tier.endeavors.map(&:id) }
+  scope :not_in_tier, lambda { |tier| tier.endeavors.reject(&:new_record?).present? ? where(self.arel_table[:id].not_in(tier.endeavors.map(&:id).compact)) : {} }
   scope :by_member, lambda { |member| where(:member_id => member)}
   
   def goal_name

@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h2><b><%= @sub_club.name %></b></h2>
+<h2>
+	<b><%= @sub_club.name %></b>
+	<% unless current_member.is_a_member_of? @sub_club %>
+	  <span class="small"><%= link_to 'join', memberships_path(:membership => {:sub_club_id => @sub_club.id}), :method => :post %></span>
+	<% end %>
+</h2>
 
 <p>
   <%= @sub_club.description %>

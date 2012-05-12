@@ -42,10 +42,9 @@
 </div>
 
 <div id="sub_clubs">
-	<%= link_to 'bring this tier to a club', new_tier_house_path(:tier_house => {:tier_id => @tier.id}) if @tier.member == current_member %>
-	<%= form_for @tier.tier_houses.new do |f| %>
-	  <%= SubClub.with_member(current_member).without_tier(@tier).count %>
-	  <%= f.select :sub_club_id, options_from_collection_for_select(SubClub.with_member(current_member).without_tier(@tier).all, :id, :name) %>
+	<%= link_to_function 'bring this tier to a club', "$('#new_tier_house').show();" if @tier.member == current_member %>
+	<%= form_for @tier.tier_houses.new, :html => {:class => 'hidden'} do |f| %>
+	  <%= f.select :sub_club_id, options_from_collection_for_select(SubClub.with_member(current_member).without_tier(@tier), :id, :name) %>
 	  <%= f.submit :share %>
 	  <%= f.hidden_field :tier_id%>
 	<% end %>
