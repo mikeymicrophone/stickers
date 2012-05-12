@@ -1,5 +1,9 @@
 <div>
-  <h1><%= @member.first_name %></h1> has <%= @member.goals.count %> goals:
+  <h1>
+    <%= @member.first_name %>
+    <span class="small"><%= links_to @member.sub_clubs %></span>
+  </h1>
+  has <%= @member.goals.count %> goals:
 </div>
 <%= link_to_function 'shuffle', "$('#members_goals').shuffle()", :id => 'shuffle' %>
 <%= cleardiv %>

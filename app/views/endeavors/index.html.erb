@@ -1,29 +1,38 @@
-<h1>Endeavors</h1>
+<h1><%= @member.first_name + "'s" if @member %> Endeavors</h1>
+<%= link_to_function 'shuffle', "$('#endeavors').shuffle()", :id => 'shuffle' %>
+<%= cleardiv %>
 
-<table>
+
+<table id="endeavors">
 <% @endeavors.each do |endeavor| %>
-  <tr>
-    <td><%= link_to endeavor.goal.title, endeavor.goal %></td>
-    <td><%= link_to 'p', endeavor %></td>
-    <td><%= endeavor.member.first_name %></td>
-    <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
-  </tr>
-  <tr>
-    <td colspan=9>
-      <%= div_for endeavor, :details do %>
+  <tbody>
+	  <tr>
+		  <% unless @member %>
+				<td>(<%= link_to endeavor.member.first_name, member_endeavors_path(endeavor.member) %>)</td>
+		  <% end %>
+	    <td>
+	      <%= link_to endeavor.goal.title, endeavor %>
+	      <%= link_to '*', endeavor.goal %>
+		  </td>
+	    <td><%= link_to 'p', endeavor %></td>
+	    <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
+	  </tr>
+	  <tr>
+	    <td colspan=9>
+	      <%= div_for endeavor, :details do %>
       
-      <% end %>
+	      <% end %>
       
-      <%= form_for endeavor.details.new, :html => {:id => dom_id(endeavor, :detail_on), :style => "display:none"} do |f| %>
-        <%= f.text_area :note, :size => '40x5' %>
-        <%= f.file_field :payload %>
-        <%= f.submit :save %>
-        <%= f.hidden_field :target_type %>
-        <%= f.hidden_field :target_id %>
-      <% end %>
-    </td>
-  </tr>
-  
+	      <%= form_for endeavor.details.new, :html => {:id => dom_id(endeavor, :detail_on), :style => "display:none"} do |f| %>
+	        <%= f.text_area :note, :size => '40x5' %>
+	        <%= f.file_field :payload %>
+	        <%= f.submit :save %>
+	        <%= f.hidden_field :target_type %>
+	        <%= f.hidden_field :target_id %>
+	      <% end %>
+	    </td>
+	  </tr>
+  </tbody>
 <% end %>
 </table>
 

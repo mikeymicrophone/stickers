@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= link_to @endeavor.member.first_name, @endeavor.member %></h1>
+
 <p>
   <%= link_to @endeavor.goal_name, @endeavor.goal %>
   <span class="small"><%= links_to @endeavor.tiers %></span>

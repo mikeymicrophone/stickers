@@ -5,6 +5,8 @@ Stickers::Application.routes.draw do
 
   resources :sub_clubs do
     resources :members
+    resources :tiers
+    resources :endeavors
   end
 
   resources :tierings
@@ -48,6 +50,7 @@ Stickers::Application.routes.draw do
     resources :goals
     resources :scores
     resources :tiers
+    resources :endeavors
   end
   
   root :to => 'goals#index'

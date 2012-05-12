@@ -5,6 +5,9 @@ class TiersController < ApplicationController
     @tiers = if params[:member_id]
       @member = Member.find params[:member_id]
       @member.tiers
+    elsif params[:sub_club_id]
+      @sub_club = SubClub.find params[:sub_club_id]
+      @sub_club.tiers
     else
       Tier.all
     end

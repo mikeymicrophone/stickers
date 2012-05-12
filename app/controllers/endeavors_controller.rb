@@ -3,7 +3,14 @@ class EndeavorsController < ApplicationController
   # GET /endeavors.json
   def index
     @endeavors = if params[:tier_id]
-      Tier.find(params[:tier_id]).endeavors
+      @tier = Tier.find params[:tier_id]
+      @tier.endeavors
+    elsif params[:member_id]
+      @member = Member.find params[:member_id]
+      @member.endeavors
+    elsif params[:sub_club_id]
+      @sub_club = SubClub.find params[:sub_club_id]
+      @sub_club.endeavors
     else
       Endeavor.all
     end
