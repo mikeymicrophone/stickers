@@ -27,7 +27,7 @@
 <% @goal.endeavors.each do |endeavor| %>
   <% member = endeavor.member %>
   <div>
-    <%= member.first_name %> has
+    <%= link_to member.first_name, member %> has
     <%= member.score_for(@goal) %> in
     <%= pluralize member.scored_days_for(@goal), 'day' %> for an average percentage of 
     <%= (member.score_for(@goal).to_i * 5.0 / member.scored_days_for(@goal)).to_i if member.scored_days_for(@goal) > 0 %>

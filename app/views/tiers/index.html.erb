@@ -1,35 +1,39 @@
 <h1><%= "#{@member.first_name}'s" if params[:member_id] %> Goal Tiers</h1>
+<%= link_to_function 'shuffle', "$('#tiers').shuffle()", :id => 'shuffle' %>
+<%= cleardiv %>
 
-<table>
+<table id="tiers">
 <% @tiers.each do |tier| %>
-  <tr>
-    <td>
-	    <% unless params[:member_id] %>
-		    (<%= link_to tier.member.first_name, tier.member %>)
-	    <% end %>
-			<%= link_to tier.name, tier %>
-		</td>
-    <td><%= tier.note %></td>
-    <td><%= link_to pluralize(tier.endeavors.count, 'goal'), tier_endeavors_path(tier) %>
-		<td><%= link_to_function 'add detail', "$('##{dom_id(tier, :detail_on)}').show()" %></td>
-		<td><%= link_to 'copy', copy_tier_path(tier), :method => :post unless tier.member == current_member %></td>
-	</tr>
+  <tbody>
+	  <tr>
+	    <td>
+		    <% unless params[:member_id] %>
+			    (<%= link_to tier.member.first_name, tier.member %>)
+		    <% end %>
+				<%= link_to tier.name, tier %>
+			</td>
+	    <td><%= tier.note %></td>
+	    <td><%= link_to pluralize(tier.endeavors.count, 'goal'), tier_endeavors_path(tier) %>
+			<td><%= link_to_function 'add detail', "$('##{dom_id(tier, :detail_on)}').show()" %></td>
+			<td><%= link_to 'copy', copy_tier_path(tier), :method => :post unless tier.member == current_member %></td>
+		</tr>
 
-	<tr>
-		<td colspan=9>
+		<tr>
+			<td colspan=9>
 
-		  <%= div_for tier, :details do %>
+			  <%= div_for tier, :details do %>
 
-		  <% end %>
+			  <% end %>
 
-		  <%= form_for tier.details.new, :html => {:id => dom_id(tier, :detail_on), :style => "display:none"} do |f| %>
-		    <%= f.text_area :note, :size => '40x5' %>
-		    <%= f.file_field :payload %>
-		    <%= f.submit :save %>
-		    <%= f.hidden_field :target_type %>
-		    <%= f.hidden_field :target_id %>
-		  <% end %>
-  </tr>
+			  <%= form_for tier.details.new, :html => {:id => dom_id(tier, :detail_on), :style => "display:none"} do |f| %>
+			    <%= f.text_area :note, :size => '40x5' %>
+			    <%= f.file_field :payload %>
+			    <%= f.submit :save %>
+			    <%= f.hidden_field :target_type %>
+			    <%= f.hidden_field :target_id %>
+			  <% end %>
+	  </tr>
+	</tbody>
 <% end %>
 </table>
 

@@ -9,7 +9,10 @@
   <%= @tier.note %>
 </p>
 
-<ol>
+<%= link_to_function 'shuffle', "$('#tierings').shuffle()", :id => 'shuffle' %>
+<%= cleardiv %>
+
+<ol id="tierings">
   <% @tier.endeavors.each do |endeavor| %>
     <li>
       <%= link_to endeavor.goal_name, endeavor %>

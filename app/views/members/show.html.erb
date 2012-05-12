@@ -1,7 +1,9 @@
 <div>
   <h1><%= @member.first_name %></h1> has <%= @member.goals.count %> goals:
 </div>
-<table style="border: 1px solid black">
+<%= link_to_function 'shuffle', "$('#members_goals').shuffle()", :id => 'shuffle' %>
+<%= cleardiv %>
+<table id="members_goals">
   <tr>
     <th></th>
     <th>Recent scores</th>
@@ -10,59 +12,61 @@
     <th>% last 7 days</th>
   </tr>
   <% @member.endeavors.each do |endeavor| %>
-    <tr>
-      <td>
-				<% if endeavor.tier.present? %>
-				  (<%= link_to endeavor.tier.name, endeavor.tier %>)
-				<% end %>
-        <%= link_to endeavor.goal.title, endeavor.goal %>
-      </td>
-      <td>
-        <% endeavor.scores.each do |score| %>
-          <%= div_for score do %>
-            <%= score.mark %> on <%= score.date %>
-          <% end %>
-        <% end %>
-      </td>
-      <td class="total">
-        <%= div_for endeavor, :class => medal_for(endeavor.scores.sum(:mark)) do %>
-          <%= endeavor.scores.sum(:mark) %>
-        <% end %>
-      </td>
-      <td><%= endeavor.average %></td>
-      <td id="running_average"><%= endeavor.average_last_7_days %></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <%= link_to_function 'enter', "$('##{dom_id(endeavor, :score_for)}').show()"%>
-        <%= form_for(endeavor.scores.new, :html => {:style => "display:none", :id => dom_id(endeavor, :score_for)}) do |f| %>
-          <div class="field">
-            <%= f.text_field :mark, :size => 2, :placeholder => 20 %>
-            <%= f.date_select :date %>
-            <%= f.submit :ok %>
-          </div>
+    <tbody>
+	    <tr>
+	      <td>
+					<% if endeavor.tier.present? %>
+					  (<%= link_to endeavor.tier.name, endeavor.tier %>)
+					<% end %>
+	        <%= link_to endeavor.goal.title, endeavor.goal %>
+	      </td>
+	      <td>
+	        <% endeavor.scores.each do |score| %>
+	          <%= div_for score do %>
+	            <%= score.mark %> on <%= score.date %>
+	          <% end %>
+	        <% end %>
+	      </td>
+	      <td class="total">
+	        <%= div_for endeavor, :class => medal_for(endeavor.scores.sum(:mark)) do %>
+	          <%= endeavor.scores.sum(:mark) %>
+	        <% end %>
+	      </td>
+	      <td><%= endeavor.average %></td>
+	      <td id="running_average"><%= endeavor.average_last_7_days %></td>
+	    </tr>
+	    <tr>
+	      <td></td>
+	      <td>
+	        <%= link_to_function 'enter', "$('##{dom_id(endeavor, :score_for)}').show()"%>
+	        <%= form_for(endeavor.scores.new, :html => {:style => "display:none", :id => dom_id(endeavor, :score_for)}) do |f| %>
+	          <div class="field">
+	            <%= f.text_field :mark, :size => 2, :placeholder => 20 %>
+	            <%= f.date_select :date %>
+	            <%= f.submit :ok %>
+	          </div>
 
-          <%= f.hidden_field :endeavor_id %>
-        <% end %>
-      </td>
-			<td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
-		</tr>
+	          <%= f.hidden_field :endeavor_id %>
+	        <% end %>
+	      </td>
+				<td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
+			</tr>
 
-		<tr>
-		<td colspan=9>
-		  <%= div_for endeavor, :details do %>
+			<tr>
+			<td colspan=9>
+			  <%= div_for endeavor, :details do %>
 
-		  <% end %>
+			  <% end %>
 
-		  <%= form_for endeavor.details.new, :html => {:id => dom_id(endeavor, :detail_on), :style => "display:none"} do |f| %>
-		    <%= f.text_area :note, :size => '40x5' %>
-		    <%= f.file_field :payload %>
-		    <%= f.submit :save %>
-		    <%= f.hidden_field :target_type %>
-		    <%= f.hidden_field :target_id %>
-		  <% end %>
-		</td>
-    </tr>
+			  <%= form_for endeavor.details.new, :html => {:id => dom_id(endeavor, :detail_on), :style => "display:none"} do |f| %>
+			    <%= f.text_area :note, :size => '40x5' %>
+			    <%= f.file_field :payload %>
+			    <%= f.submit :save %>
+			    <%= f.hidden_field :target_type %>
+			    <%= f.hidden_field :target_id %>
+			  <% end %>
+			</td>
+	    </tr>
+	  </tbody>
   <% end %>
 </table>
