@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120511081451) do
+ActiveRecord::Schema.define(:version => 20120512012310) do
 
   create_table "days", :force => true do |t|
     t.date     "date"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120511081451) do
     t.integer  "member_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "position"
   end
 
   create_table "endeavors", :force => true do |t|
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120511081451) do
     t.integer  "member_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
 
   add_index "endeavors", ["goal_id"], :name => "index_endeavors_on_goal_id"
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20120511081451) do
     t.integer  "member_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "position"
   end
 
   add_index "memberships", ["member_id"], :name => "index_memberships_on_member_id"
@@ -123,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20120511081451) do
     t.integer  "tier_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "position"
   end
 
   add_index "tier_houses", ["sub_club_id"], :name => "index_tier_houses_on_sub_club_id"
@@ -133,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20120511081451) do
     t.integer  "tier_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "position"
   end
 
   add_index "tierings", ["endeavor_id"], :name => "index_tierings_on_endeavor_id"
@@ -144,6 +149,7 @@ ActiveRecord::Schema.define(:version => 20120511081451) do
     t.integer  "member_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
 
 end

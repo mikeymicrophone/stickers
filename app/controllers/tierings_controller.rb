@@ -68,6 +68,15 @@ class TieringsController < ApplicationController
       end
     end
   end
+  
+  def sort
+    @tierings = Tiering.find params[:tiering]
+    @tierings.each do |tiering|
+      tiering.position = params['tiering'].index(tiering.id.to_s) + 1
+      tiering.save
+    end
+    render :nothing => true
+  end
 
   # DELETE /tierings/1
   # DELETE /tierings/1.json

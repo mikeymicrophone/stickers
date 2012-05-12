@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $("#tierings").sortable
+    axis: "y"
+    dropOnEmpty: false
+    cursor: "crosshair"
+    handle: '#running_average'
+    items: "li"
+    opacity: 0.4
+    scroll: true
+    update: ->
+      $.ajax "/tierings/sort",
+        type: "post"
+        data: $("#tierings").sortable("serialize")
+        dataType: "script"

@@ -13,8 +13,9 @@
 <%= cleardiv %>
 
 <ol id="tierings">
-  <% @tier.endeavors.each do |endeavor| %>
-    <li>
+  <% @tier.tierings.each do |tiering| %>
+    <% endeavor = tiering.endeavor %>
+    <li id="<%= dom_id(tiering) %>">
       <%= link_to endeavor.goal_name, endeavor %>
 	    <span id="running_average"><%= endeavor.average_last_7_days %></span>
 	  </li>
