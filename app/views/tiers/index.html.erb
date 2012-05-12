@@ -4,7 +4,7 @@
 
 <table id="tiers">
 <% @tiers.each do |tier| %>
-  <tbody>
+  <tbody id="<%= dom_id tier %>">
 	  <tr>
 	    <td>
 		    <% unless params[:member_id] %>
@@ -16,6 +16,9 @@
 	    <td><%= link_to pluralize(tier.endeavors.count, 'goal'), tier_endeavors_path(tier) %>
 			<td><%= link_to_function 'add detail', "$('##{dom_id(tier, :detail_on)}').show()" %></td>
 			<td><%= link_to 'copy', copy_tier_path(tier), :method => :post unless tier.member == current_member %></td>
+			<% if tier.member == current_member %>
+			  <td class="handle">(move)</td>
+			<% end %>
 		</tr>
 
 		<tr>

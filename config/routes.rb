@@ -19,6 +19,9 @@ Stickers::Application.routes.draw do
     member do
       post :copy
     end
+    collection do
+      post :sort
+    end
     resources :endeavors
   end
 

@@ -10,7 +10,7 @@ class Member < ActiveRecord::Base
   has_many :endeavors
   has_many :goals, :through => :endeavors
   has_many :scores, :through => :endeavors
-  has_many :tiers
+  has_many :tiers, :order => :position
   has_many :tierings, :through => :tiers
   has_many :memberships
   has_many :sub_clubs, :through => :memberships

@@ -6,4 +6,6 @@ class Tier < ActiveRecord::Base
   has_many :tier_houses
   has_many :sub_clubs, :through => :tierhouses
   has_many :details, :as => :target
+  
+  acts_as_list :scope => :member_id
 end

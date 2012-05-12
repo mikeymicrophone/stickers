@@ -91,6 +91,16 @@ class TiersController < ApplicationController
       end
     end
   end
+  
+  def sort
+    @tiers = Tier.find params[:tier]
+    @tiers.each do |tier|
+      tier.position = params['tier'].index(tier.id.to_s) + 1
+      tier.save
+    end
+    render :nothing => true
+  end
+  
 
   # DELETE /tiers/1
   # DELETE /tiers/1.json
