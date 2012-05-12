@@ -6,7 +6,7 @@ class TierHousesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tier_houses }
+      format.json { render :json => @tier_houses }
     end
   end
 
@@ -17,7 +17,7 @@ class TierHousesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @tier_house }
+      format.json { render :json => @tier_house }
     end
   end
 
@@ -28,7 +28,7 @@ class TierHousesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @tier_house }
+      format.json { render :json => @tier_house }
     end
   end
 
@@ -44,11 +44,11 @@ class TierHousesController < ApplicationController
 
     respond_to do |format|
       if @tier_house.save
-        format.html { redirect_to @tier_house, notice: 'Tier house was successfully created.' }
-        format.json { render json: @tier_house, status: :created, location: @tier_house }
+        format.html { redirect_to @tier_house, :notice => 'Tier house was successfully created.' }
+        format.json { render :json => @tier_house, :status => :created, :location => @tier_house }
       else
-        format.html { render action: "new" }
-        format.json { render json: @tier_house.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @tier_house.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class TierHousesController < ApplicationController
 
     respond_to do |format|
       if @tier_house.update_attributes(params[:tier_house])
-        format.html { redirect_to @tier_house, notice: 'Tier house was successfully updated.' }
+        format.html { redirect_to @tier_house, :notice => 'Tier house was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @tier_house.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @tier_house.errors, :status => :unprocessable_entity }
       end
     end
   end

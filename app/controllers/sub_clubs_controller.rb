@@ -6,7 +6,7 @@ class SubClubsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @sub_clubs }
+      format.json { render :json => @sub_clubs }
     end
   end
 
@@ -17,7 +17,7 @@ class SubClubsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @sub_club }
+      format.json { render :json => @sub_club }
     end
   end
 
@@ -28,7 +28,7 @@ class SubClubsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @sub_club }
+      format.json { render :json => @sub_club }
     end
   end
 
@@ -44,11 +44,11 @@ class SubClubsController < ApplicationController
 
     respond_to do |format|
       if @sub_club.save
-        format.html { redirect_to @sub_club, notice: 'Sub club was successfully created.' }
-        format.json { render json: @sub_club, status: :created, location: @sub_club }
+        format.html { redirect_to @sub_club, :notice => 'Sub club was successfully created.' }
+        format.json { render :json => @sub_club, :status => :created, :location => @sub_club }
       else
-        format.html { render action: "new" }
-        format.json { render json: @sub_club.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @sub_club.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,15 +60,15 @@ class SubClubsController < ApplicationController
 
     respond_to do |format|
       if @sub_club.update_attributes(params[:sub_club])
-        format.html { redirect_to @sub_club, notice: 'Sub club was successfully updated.' }
+        format.html { redirect_to @sub_club, :notice => 'Sub club was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @sub_club.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @sub_club.errors, :status => :unprocessable_entity }
       end
     end
   end
-
+  
   # DELETE /sub_clubs/1
   # DELETE /sub_clubs/1.json
   def destroy

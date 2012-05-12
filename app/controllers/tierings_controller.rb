@@ -6,7 +6,7 @@ class TieringsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tierings }
+      format.json { render :json => @tierings }
     end
   end
 
@@ -17,7 +17,7 @@ class TieringsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @tiering }
+      format.json { render :json => @tiering }
     end
   end
 
@@ -28,7 +28,7 @@ class TieringsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @tiering }
+      format.json { render :json => @tiering }
     end
   end
 
@@ -44,11 +44,11 @@ class TieringsController < ApplicationController
 
     respond_to do |format|
       if @tiering.save
-        format.html { redirect_to @tiering.tier, notice: "#{current_member.tierings.count.ordinalize} goal in this tier." }
-        format.json { render json: @tiering, status: :created, location: @tiering }
+        format.html { redirect_to @tiering.tier, :notice => "#{current_member.tierings.count.ordinalize} goal in this tier." }
+        format.json { render :json => @tiering, :status => :created, :location => @tiering }
       else
-        format.html { render action: "new" }
-        format.json { render json: @tiering.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @tiering.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class TieringsController < ApplicationController
 
     respond_to do |format|
       if @tiering.update_attributes(params[:tiering])
-        format.html { redirect_to @tiering, notice: 'Tiering was successfully updated.' }
+        format.html { redirect_to @tiering, :notice => 'Tiering was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @tiering.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @tiering.errors, :status => :unprocessable_entity }
       end
     end
   end

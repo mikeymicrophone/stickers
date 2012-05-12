@@ -14,7 +14,7 @@ class TiersController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @tiers }
+      format.json { render :json => @tiers }
     end
   end
 
@@ -25,7 +25,7 @@ class TiersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @tier }
+      format.json { render :json => @tier }
     end
   end
 
@@ -36,7 +36,7 @@ class TiersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @tier }
+      format.json { render :json => @tier }
     end
   end
 
@@ -56,11 +56,11 @@ class TiersController < ApplicationController
         if params[:endeavor_id]
           @tier.tierings.create :endeavor_id => params[:endeavor_id]
         end
-        format.html { redirect_to @tier, notice: "Your #{current_member.tiers.count.ordinalize} tier." }
-        format.json { render json: @tier, status: :created, location: @tier }
+        format.html { redirect_to @tier, :notice => "Your #{current_member.tiers.count.ordinalize} tier." }
+        format.json { render :json => @tier, :status => :created, :location => @tier }
       else
-        format.html { render action: "new" }
-        format.json { render json: @tier.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @tier.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -83,11 +83,11 @@ class TiersController < ApplicationController
 
     respond_to do |format|
       if @tier.update_attributes(params[:tier])
-        format.html { redirect_to @tier, notice: 'Tier was successfully updated.' }
+        format.html { redirect_to @tier, :notice => 'Tier was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @tier.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @tier.errors, :status => :unprocessable_entity }
       end
     end
   end

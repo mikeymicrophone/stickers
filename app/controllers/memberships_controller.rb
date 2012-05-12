@@ -6,7 +6,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @memberships }
+      format.json { render :json => @memberships }
     end
   end
 
@@ -17,7 +17,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @membership }
+      format.json { render :json => @membership }
     end
   end
 
@@ -28,7 +28,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @membership }
+      format.json { render :json => @membership }
     end
   end
 
@@ -45,11 +45,11 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership.sub_club, notice: 'You joined!' }
-        format.json { render json: @membership, status: :created, location: @membership }
+        format.html { redirect_to @membership.sub_club, :notice => 'You joined!' }
+        format.json { render :json => @membership, :status => :created, :location => @membership }
       else
-        format.html { render action: "new" }
-        format.json { render json: @membership.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @membership.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -61,11 +61,11 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.update_attributes(params[:membership])
-        format.html { redirect_to @membership, notice: 'Membership was successfully updated.' }
+        format.html { redirect_to @membership, :notice => 'Membership was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @membership.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @membership.errors, :status => :unprocessable_entity }
       end
     end
   end
