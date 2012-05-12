@@ -45,7 +45,11 @@ Stickers::Application.routes.draw do
 
   resources :days
 
-  resources :endeavors
+  resources :endeavors do
+    collection do
+      post :sort
+    end
+  end
 
   resources :goals do
     resources :members

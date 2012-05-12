@@ -81,6 +81,15 @@ class EndeavorsController < ApplicationController
       end
     end
   end
+  
+  def sort
+    @endeavors = Endeavor.find params[:endeavor]
+    @endeavors.each do |endeavor|
+      endeavor.position = params['endeavor'].index(endeavor.id.to_s) + 1
+      endeavor.save
+    end
+    render :nothing => true
+  end
 
   # DELETE /endeavors/1
   # DELETE /endeavors/1.json

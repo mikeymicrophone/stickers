@@ -7,7 +7,7 @@ class Member < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :invitee_id
   
-  has_many :endeavors
+  has_many :endeavors, :order => :position
   has_many :goals, :through => :endeavors
   has_many :scores, :through => :endeavors
   has_many :tiers, :order => :position

@@ -99,8 +99,7 @@ class TiersController < ApplicationController
       tier.save
     end
     render :nothing => true
-  end
-  
+  end  
 
   # DELETE /tiers/1
   # DELETE /tiers/1.json

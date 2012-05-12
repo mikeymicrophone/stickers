@@ -5,7 +5,7 @@
 
 <table id="endeavors">
 <% @endeavors.each do |endeavor| %>
-  <tbody>
+  <tbody id="<%= dom_id endeavor %>">
 	  <tr>
 		  <% unless @member %>
 				<td>(<%= link_to endeavor.member.first_name, member_endeavors_path(endeavor.member) %>)</td>
@@ -16,6 +16,9 @@
 		  </td>
 	    <td><%= link_to 'p', endeavor %></td>
 	    <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
+			<% if endeavor.member == current_member && params[:member_id] %>
+			  <td class="handle">(move)</td>
+			<% end %>
 	  </tr>
 	  <tr>
 	    <td colspan=9>
