@@ -1,5 +1,5 @@
 class Goal < ActiveRecord::Base
-  has_many :endeavors
+  has_many :endeavors, :dependent => :destroy
   has_many :members, :through => :endeavors
   has_many :details, :as => :target
   

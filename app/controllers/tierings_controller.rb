@@ -85,6 +85,7 @@ class TieringsController < ApplicationController
     @tiering.destroy
 
     respond_to do |format|
+      format.js
       format.html { redirect_to tierings_url }
       format.json { head :no_content }
     end

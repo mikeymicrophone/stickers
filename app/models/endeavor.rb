@@ -1,9 +1,9 @@
 class Endeavor < ActiveRecord::Base
   belongs_to :goal
   belongs_to :member
-  has_many :scores
+  has_many :scores, :dependent => :destroy
   has_many :details, :as => :target
-  has_many :tierings
+  has_many :tierings, :dependent => :destroy
   has_many :tiers, :through => :tierings
   
   validates_uniqueness_of :goal_id, :scope => :member_id

@@ -54,3 +54,4 @@
 <% else %>
   <%= link_to 'try this goal', new_endeavor_path(:endeavor => {:goal_id => @goal.id}) %>
 <% end %>
+<%= link_to 'edit', edit_goal_path(@goal) %>

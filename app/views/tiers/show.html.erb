@@ -18,6 +18,7 @@
     <li id="<%= dom_id(tiering) %>">
       <%= link_to endeavor.goal_name, endeavor %>
 	    <span id="running_average"><%= endeavor.average_last_7_days %></span>
+	    <%= link_to 'x', tiering_path(tiering), :method => :delete, :remote => true %>
 	  </li>
   <% end %>
 </ol>
