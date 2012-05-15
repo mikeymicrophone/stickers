@@ -64,7 +64,7 @@ class FacilitationsController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @facilitation.errors, :unprocessable_entity }
+        format.json { render :json => @facilitation.errors, :status => :unprocessable_entity }
       end
     end
   end
