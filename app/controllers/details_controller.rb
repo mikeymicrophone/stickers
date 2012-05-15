@@ -2,10 +2,14 @@ class DetailsController < ApplicationController
   # GET /details
   # GET /details.json
   def index
-    if params[:score_id]
-      @details = Score.find(params[:score_id]).details
+    @details = if params[:score_id]
+      @subject = Score.find params[:score_id]
+      @subject.details
+    elsif params[:endeavor_id]
+      @subject = Endeavor.find params[:endeavor_id]
+      @subject.details
     else
-      @details = Detail.all
+      Detail.all
     end
 
     respond_to do |format|

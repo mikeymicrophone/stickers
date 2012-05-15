@@ -20,6 +20,8 @@ class Member < ActiveRecord::Base
   
   after_create :credit_invitee!
   
+  scope :randomized, order("rand()")
+  
   def score_for goal
     goal.endeavors.where(:member_id => id).joins(:scores).sum(:mark)
   end

@@ -2,13 +2,17 @@ class ScoresController < ApplicationController
   # GET /scores
   # GET /scores.json
   def index
-    if params[:member_id]
-      @scores = Member.find(params[:member_id]).scores
+    @scores = if params[:member_id]
+      Member.find(params[:member_id]).scores
+    elsif params[:endeavor_id]
+      @endeavor = Endeavor.find params[:endeavor_id]
+      @endeavor.scores
     else
-      @scores = Score.all
+      Score.all
     end
 
     respond_to do |format|
+      format.js
       format.html # index.html.erb
       format.json { render :json => @scores }
     end

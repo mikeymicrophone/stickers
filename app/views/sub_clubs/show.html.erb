@@ -15,13 +15,28 @@
 </p>
 
 <ul>
-	<% @sub_club.members.each do |member| %>
-	  <li><%= link_to member.first_name, member %></li>
-	<% end %>
-</ul>
-
-<ul>
-	<% @sub_club.tiers.each do |tier| %>
-	  <li><%= link_to tier.name, tier %></li>
+	<% @sub_club.members.randomized.each do |member| %>
+	  <li>
+	    <%= member.first_name %>
+	    <ul>
+      	<% @sub_club.tiers.for_member(member).each do |tier| %>
+      	  <li>
+      	    <%= link_to tier.name, tier %>
+      	    <ul>
+      	      <% tier.endeavors.each do |endeavor| %>
+      	        <%= endeavor.goal_name %>
+      	        <span class="running_average"><%= endeavor.average_last_7_days.to_i %>%</span>
+      	        <%= link_to 'show notes', endeavor_details_path(endeavor), :remote => true %>
+      	        <%= link_to 'show scores', endeavor_scores_path(endeavor), :remote => true %>
+      	        <%= div_for endeavor, :scores_for do %>
+      	        <% end %>
+      	        <%= div_for endeavor, :details_on do %>
+      	        <% end %>
+      	      <% end %>
+      	    </ul>
+    	    </li>
+      	<% end %>
+      </ul>
+    </li>
 	<% end %>
 </ul>

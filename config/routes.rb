@@ -61,6 +61,7 @@ Stickers::Application.routes.draw do
       post :sort
     end
     resources :scores
+    resources :details
   end
 
   resources :goals do

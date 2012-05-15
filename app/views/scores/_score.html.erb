@@ -1,1 +1,5 @@
-<%= score.mark %>, 
+<%= score.date%>: <%= score.mark %>
+<%= link_to score.details.count, score_details_path(score), :remote => true %>
+<%= div_for score, :details_on do %>
+  
+<% end %>

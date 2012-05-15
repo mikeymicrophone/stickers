@@ -9,4 +9,5 @@ class Tier < ActiveRecord::Base
   acts_as_list :scope => :member_id
   
   scope :public_to, lambda { |member| joins(:sub_clubs).where("sub_club_id in (?)", member.memberships.map(&:sub_club_id)) }
+  scope :for_member, lambda { |member| {:conditions => {:member_id => member.id}} }
 end
