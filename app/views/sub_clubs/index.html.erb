@@ -1,15 +1,12 @@
 <h1>Sub Clubs</h1>
 
 <p>
-	The Stickers Club is one big club - but you can also form groups with your friends, to help each other focus on certain goals.  You bring your specific endeavors to each club by adding them to tiers.  Each tier can be shared with any clubs you want.
+	Form groups with your friends, to help each other focus on goals.  Bring your <%= link_to 'endeavors', member_endeavors_path(current_member) %> to a club by adding them to <%= link_to 'tiers', member_tiers_path(current_member) %>.
 </p>
 
 <% @sub_clubs.each do |sub_club| %>
   <div>
 	  <strong><em><%= link_to sub_club.name, sub_club %></em></strong>
-	  (<%= link_to sub_club.members.count, sub_club_members_path(sub_club) %>)
-	  (<%= link_to sub_club.tiers.count, sub_club_tiers_path(sub_club) %>)
-	  (<%= link_to sub_club.endeavors.count, sub_club_endeavors_path(sub_club) %>)
 	  <%= sub_club.description %>
 	  <% if current_member.is_a_member_of?(sub_club) %>
 	  

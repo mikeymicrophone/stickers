@@ -11,4 +11,5 @@ class SubClub < ActiveRecord::Base
   
   scope :without_tier, lambda { |tier| tier.tier_houses.reject(&:new_record?).present? ? where(self.arel_table[:id].not_in(tier.tier_houses.map(&:sub_club_id).compact)) : {} }
   scope :with_member, lambda { |member| where(self.arel_table[:id].in(member.memberships.map(&:sub_club_id))) }
+  scope :randomized, order("rand()")
 end

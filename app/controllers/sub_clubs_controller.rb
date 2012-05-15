@@ -2,7 +2,11 @@ class SubClubsController < ApplicationController
   # GET /sub_clubs
   # GET /sub_clubs.json
   def index
-    @sub_clubs = SubClub.all
+    @sub_clubs = if params[:tier_id]
+      Tier.find(params[:tier_id]).sub_clubs
+    else
+      SubClub.randomized
+    end
 
     respond_to do |format|
       format.html # index.html.erb

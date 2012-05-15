@@ -33,6 +33,7 @@ Stickers::Application.routes.draw do
       post :sort
     end
     resources :endeavors
+    resources :sub_clubs
   end
 
   resources :invitees do
