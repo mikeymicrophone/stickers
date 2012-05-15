@@ -44,7 +44,9 @@ class SubClubsController < ApplicationController
 
     respond_to do |format|
       if @sub_club.save
-        @sub_club.memberships.create :member => current_member
+        @membership = @sub_club.memberships.create :member => current_member
+        @membership.approve!
+        @sub_club.facilitations.create :member => current_member
         format.html { redirect_to @sub_club, :notice => 'Sub club was successfully created.' }
         format.json { render :json => @sub_club, :status => :created, :location => @sub_club }
       else

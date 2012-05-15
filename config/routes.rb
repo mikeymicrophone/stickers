@@ -1,9 +1,14 @@
 Stickers::Application.routes.draw do
+  resources :facilitations
+
   resources :tier_houses
 
   resources :memberships do
     collection do
       post :sort
+    end
+    member do
+      put :approve
     end
   end
 
@@ -11,6 +16,7 @@ Stickers::Application.routes.draw do
     resources :members
     resources :tiers
     resources :endeavors
+    resources :memberships
   end
 
   resources :tierings do

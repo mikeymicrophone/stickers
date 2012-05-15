@@ -1,0 +1,23 @@
+<h1>Listing facilitations</h1>
+
+<table>
+  <tr>
+    <th>Sub club</th>
+    <th>Member</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @facilitations.each do |facilitation| %>
+  <tr>
+    <td><%= facilitation.sub_club %></td>
+    <td><%= facilitation.member %></td>
+    <td><%= link_to 'Show', facilitation %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Facilitation', new_facilitation_path %>

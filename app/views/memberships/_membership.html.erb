@@ -1,0 +1,6 @@
+<tr id="<%= dom_id membership %>">
+  <td><%= link_to membership.member.first_name, membership.member %></td>
+  <td><%= link_to 'approve', approve_membership_path(membership), :method => :put, :remote => true unless membership.approved? %></td>
+  <td><%= link_to 'remove', membership, :method => :delete, :remote => true %></td>
+  <td><%= link_to 'make facilitator', facilitations_path(:facilitation => {:member_id => membership.member_id, :sub_club_id => membership.sub_club_id}), :method => :post, :remote => true unless membership.member.facilitates?(membership.sub_club)%></td>
+</tr>

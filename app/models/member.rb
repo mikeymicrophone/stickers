@@ -14,6 +14,7 @@ class Member < ActiveRecord::Base
   has_many :tierings, :through => :tiers
   has_many :memberships, :order => :position
   has_many :sub_clubs, :through => :memberships
+  has_many :facilitations
   
   attr_accessor :invitee_id
   
@@ -32,6 +33,10 @@ class Member < ActiveRecord::Base
   end
   
   def is_a_member_of? sub_club
-    memberships.where(:sub_club_id => sub_club.id).first
+    memberships.approved.where(:sub_club_id => sub_club.id).first
+  end
+  
+  def facilitates? sub_club
+    facilitations.where(:sub_club_id => sub_club.id).first
   end
 end

@@ -1,0 +1,25 @@
+<%= form_for(@facilitation) do |f| %>
+  <% if @facilitation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@facilitation.errors.count, "error") %> prohibited this facilitation from being saved:</h2>
+
+      <ul>
+      <% @facilitation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sub_club %><br />
+    <%= f.text_field :sub_club %>
+  </div>
+  <div class="field">
+    <%= f.label :member %><br />
+    <%= f.text_field :member %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

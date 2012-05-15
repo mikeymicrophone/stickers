@@ -1,8 +1,10 @@
 class SubClub < ActiveRecord::Base
   attr_accessible :description, :name
   
+  has_many :facilitations
+  has_many :facilitators, :through => :facilitations, :source => :member
   has_many :memberships
-  has_many :members, :through => :memberships
+  has_many :members, :through => :memberships, :conditions => {:memberships => {:approved => true}}
   has_many :tier_houses
   has_many :tiers, :through => :tier_houses
   has_many :endeavors, :through => :tiers

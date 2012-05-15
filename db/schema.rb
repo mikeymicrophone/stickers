@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512012310) do
+ActiveRecord::Schema.define(:version => 20120515043222) do
 
   create_table "days", :force => true do |t|
     t.date     "date"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20120512012310) do
 
   add_index "endeavors", ["goal_id"], :name => "index_endeavors_on_goal_id"
   add_index "endeavors", ["member_id"], :name => "index_endeavors_on_member_id"
+
+  create_table "facilitations", :force => true do |t|
+    t.integer  "sub_club_id"
+    t.integer  "member_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "facilitations", ["member_id"], :name => "index_facilitations_on_member_id"
+  add_index "facilitations", ["sub_club_id"], :name => "index_facilitations_on_sub_club_id"
 
   create_table "goals", :force => true do |t|
     t.string   "title"
@@ -97,6 +107,7 @@ ActiveRecord::Schema.define(:version => 20120512012310) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "position"
+    t.boolean  "approved"
   end
 
   add_index "memberships", ["member_id"], :name => "index_memberships_on_member_id"
@@ -127,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20120512012310) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "position"
+    t.boolean  "approved"
   end
 
   add_index "tier_houses", ["sub_club_id"], :name => "index_tier_houses_on_sub_club_id"

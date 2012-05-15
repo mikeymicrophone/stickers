@@ -2,7 +2,11 @@ class MembershipsController < ApplicationController
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.all
+    @memberships = if params[:sub_club_id]
+      SubClub.find(params[:sub_club_id]).memberships
+    else
+      Membership.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,7 +49,7 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership.sub_club, :notice => 'You joined!' }
+        format.html { redirect_to sub_clubs_path, :notice => 'You requested membership.' }
         format.json { render :json => @membership, :status => :created, :location => @membership }
       else
         format.html { render :action => "new" }
@@ -70,6 +74,17 @@ class MembershipsController < ApplicationController
     end
   end
   
+  def approve
+    @membership = Membership.find params[:id]
+    if current_member.facilitates?(@membership.sub_club)
+      @membership.approve!
+    end
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
   def sort
     @memberships = Membership.find params[:membership]
     @memberships.each do |membership|
@@ -86,6 +101,7 @@ class MembershipsController < ApplicationController
     @membership.destroy
 
     respond_to do |format|
+      format.js
       format.html { redirect_to @membership.sub_club, :notice => 'you left:' }
       format.json { head :no_content }
     end
