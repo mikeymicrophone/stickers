@@ -86,7 +86,7 @@ class MembershipsController < ApplicationController
     @membership.destroy
 
     respond_to do |format|
-      format.html { redirect_to memberships_url }
+      format.html { redirect_to @membership.sub_club, :notice => 'you left:' }
       format.json { head :no_content }
     end
   end

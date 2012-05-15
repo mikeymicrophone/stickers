@@ -32,6 +32,6 @@ class Member < ActiveRecord::Base
   end
   
   def is_a_member_of? sub_club
-    memberships.where(:sub_club_id => sub_club.id).present?
+    memberships.where(:sub_club_id => sub_club.id).first
   end
 end

@@ -14,7 +14,7 @@
 	      <%= link_to endeavor.goal.title, endeavor %>
 	      <%= link_to '*', endeavor.goal %>
 		  </td>
-	    <td><%= link_to 'p', endeavor %></td>
+	    <td><%= link_to 'x', endeavor, :method => :delete, :confirm => 'Ready to remove this endeavor?', :remote => true if endeavor.member == current_member %></td>
 	    <td><%= link_to_function 'add detail', "$('##{dom_id(endeavor, :detail_on)}').show()" %></td>
 			<% if endeavor.member == current_member && params[:member_id] %>
 			  <td class="handle">(move)</td>
