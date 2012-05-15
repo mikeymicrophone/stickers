@@ -1,14 +1,11 @@
 <table>
   <% @members.each do |member| %>
     <tr>
-      <td><%= link_to member.first_name, member %></td>
-      <td><%= link_to pluralize(member.goals.count, 'goal'), member_goals_path(member) %></td>
-			<td><% member.sub_clubs.each do |sub_club| %>
-			  <%= link_to sub_club.name, sub_club %>
-			<% end %></td>
+      <td><%= member == current_member ? link_to(member.first_name, member) : member.first_name %></td>
+      <td><%= member == current_member ? link_to(pluralize(member.goals.count, 'goal'), member_goals_path(member)) : pluralize(member.goals.count, 'goal') %></td>
       <td>
-        <%= link_to pluralize(member.tiers.count, 'tier'), member_tiers_path(member) %>:
-				<% member.tiers.each do |tier| %>
+        <%= link_to pluralize(member.tiers.public_to(current_member).count, 'tier'), member_tiers_path(member) %>:
+				<% member.tiers.public_to(current_member).each do |tier| %>
 				  <%= link_to tier.name, tier %>
 				  (<%= tier.endeavors.count %>)
 				<% end %>

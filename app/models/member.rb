@@ -36,6 +36,10 @@ class Member < ActiveRecord::Base
     memberships.approved.where(:sub_club_id => sub_club.id).first
   end
   
+  def pending_member_of? sub_club
+    memberships.unapproved.where(:sub_club_id => sub_club.id).first
+  end
+  
   def facilitates? sub_club
     facilitations.where(:sub_club_id => sub_club.id).first
   end

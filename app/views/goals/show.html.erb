@@ -24,7 +24,7 @@
   <%= f.hidden_field :target_id %>
 <% end %>
 
-<% @goal.endeavors.each do |endeavor| %>
+<% @goal.endeavors.public_to(current_member).each do |endeavor| %>
   <% member = endeavor.member %>
   <div>
     <%= link_to member.first_name, member %> has

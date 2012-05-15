@@ -11,7 +11,13 @@
 	  (<%= link_to sub_club.tiers.count, sub_club_tiers_path(sub_club) %>)
 	  (<%= link_to sub_club.endeavors.count, sub_club_endeavors_path(sub_club) %>)
 	  <%= sub_club.description %>
-	  <%= link_to 'join', memberships_path(:membership => {:sub_club_id => sub_club}), :method => :post unless current_member.is_a_member_of?(sub_club) %>
+	  <% if current_member.is_a_member_of?(sub_club) %>
+	  
+	  <% elsif current_member.pending_member_of?(sub_club) %>
+	    <i>request pending</i>
+	  <% else %>
+  	  <%= link_to 'join', memberships_path(:membership => {:sub_club_id => sub_club}), :method => :post %>
+  	<% end %>
 	</div>
 <% end %>
 <br />

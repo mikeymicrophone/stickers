@@ -12,6 +12,7 @@ class Endeavor < ActiveRecord::Base
   
   scope :not_in_tier, lambda { |tier| tier.endeavors.reject(&:new_record?).present? ? where(self.arel_table[:id].not_in(tier.endeavors.map(&:id).compact)) : {} }
   scope :by_member, lambda { |member| where(:member_id => member)}
+  scope :public_to, lambda { |member| joins(:tierings).where("tier_id in (?)", Tier.public_to(member)) }
   
   def goal_name
     goal.title

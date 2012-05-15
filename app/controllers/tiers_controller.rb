@@ -4,7 +4,7 @@ class TiersController < ApplicationController
   def index
     @tiers = if params[:member_id]
       @member = Member.find params[:member_id]
-      @member.tiers
+      @member.tiers.public_to(current_member)
     elsif params[:sub_club_id]
       @sub_club = SubClub.find params[:sub_club_id]
       @sub_club.tiers
